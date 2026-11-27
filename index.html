@@ -1,0 +1,2917 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#7C1D1D" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>అయ్యప్ప భజనలు - పాటలు & లిరిక్స్</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700;800&family=Noto+Serif+Telugu:wght@600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans Telugu"', 'sans-serif'],
+            serif: ['"Noto Serif Telugu"', 'serif'],
+          },
+          colors: {
+            saffron: {
+              50: '#FFF8F0',
+              100: '#FFEDD5',
+              200: '#FED7AA',
+              400: '#FB923C',
+              500: '#F97316',
+              600: '#EA580C',
+              700: '#C2410C',
+            },
+            maroon: {
+              800: '#7C1D1D',
+              900: '#581111',
+              950: '#3B0909',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      overscroll-behavior-y: contain;
+    }
+    .lyric-line {
+      transition: font-size 0.22s ease, opacity 0.22s ease, color 0.22s ease;
+    }
+    .role-pill-bg {
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  width 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+  </style>
+</head>
+<body class="bg-[#FFFDF9] text-stone-900 dark:bg-[#120D0A] dark:text-amber-50 min-h-screen font-sans antialiased selection:bg-saffron-200 selection:text-maroon-900">
+
+  <!-- Main Mobile App Container -->
+  <div id="app" class="max-w-[480px] mx-auto min-h-screen flex flex-col bg-[#FFFDF9] dark:bg-[#120D0A] shadow-2xl relative">
+
+    <!-- ==================== VIEW 1: SONGS LIST ==================== -->
+    <div id="home-view" class="flex-1 flex flex-col">
+      <!-- Top App Bar -->
+      <header class="sticky top-0 z-30 bg-gradient-to-r from-maroon-900 via-maroon-800 to-[#8B2518] text-amber-50 px-4 pt-4 pb-4 shadow-lg rounded-b-2xl">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-300 to-saffron-500 flex items-center justify-center shadow-inner shrink-0 border border-amber-200/40">
+              <svg class="w-6 h-6 text-maroon-950" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C10.5 4.8 9 6.8 9 9a3 3 0 0 0 6 0c0-2.2-1.5-4.2-3-7zm0 11c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4zm-6 7h12v1.5H6V20z"/>
+              </svg>
+            </div>
+            <div class="truncate">
+              <p class="text-[11px] tracking-wide text-amber-300/95 font-semibold">స్వామియే శరణం అయ్యప్ప</p>
+              <h1 class="text-lg font-bold tracking-tight text-white truncate font-serif">అయ్యప్ప భజనలు</h1>
+            </div>
+          </div>
+
+          <!-- Header Controls: Night Mode + Admin Button -->
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button id="btn-theme-toggle" type="button" aria-label="రాత్రి మోడ్ మార్చండి"
+              class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 active:scale-95 text-amber-200 transition">
+              <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+              </svg>
+              <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+
+            <button id="btn-admin-auth" type="button"
+              class="px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition active:scale-95 shadow-sm bg-amber-400 text-maroon-950 hover:bg-amber-300">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <span id="admin-auth-label">అడ్మిన్</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Search Input -->
+        <div class="mt-3.5 relative">
+          <svg class="w-4 h-4 text-amber-200/70 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input id="search-input" type="text" placeholder="పాట పేరు లేదా సాహిత్యం వెతకండి..."
+            class="w-full pl-10 pr-9 py-2.5 rounded-xl bg-black/25 border border-amber-300/20 text-white placeholder-amber-200/70 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/70 transition" />
+          <button id="btn-clear-search" type="button" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-amber-200/80 hover:text-white p-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Admin Control Bar (Shown only when Admin is logged in) -->
+      <div id="admin-toolbar" class="hidden px-4 pt-3.5">
+        <div class="bg-amber-100/95 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-700/60 rounded-2xl p-3 flex items-center justify-between gap-2 shadow-sm">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0"></span>
+            <div class="truncate">
+              <p class="text-xs font-bold text-maroon-900 dark:text-amber-300">అడ్మిన్ మోడ్ సిద్ధంగా ఉంది</p>
+              <button id="btn-reset-songs" type="button" class="text-[11px] underline text-stone-600 dark:text-amber-200/70 hover:text-maroon-900">
+                పాత పాటలు పునరుద్ధరించు
+              </button>
+            </div>
+          </div>
+          <button id="btn-add-new-song" type="button"
+            class="px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-saffron-600 to-maroon-800 hover:from-saffron-500 hover:to-maroon-700 text-white text-xs font-bold shadow-md flex items-center gap-1.5 active:scale-95 transition shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+            కొత్త పాట చేర్చు
+          </button>
+        </div>
+      </div>
+
+      <!-- Song Counter -->
+      <div class="px-4 pt-4 pb-2 flex items-center justify-between text-xs text-stone-500 dark:text-amber-200/60">
+        <span id="songs-count-label" class="font-medium">5 భజన పాటలు</span>
+        <span id="sync-status-badge" class="flex items-center gap-1.5">
+          <span id="sync-status-dot" class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          <span id="sync-status-text">కనెక్ట్ అవుతోంది...</span>
+        </span>
+      </div>
+
+      <!-- Vertical List of Song Titles -->
+      <main id="songs-list-container" class="flex-1 px-4 pb-8 space-y-2.5"></main>
+    </div>
+
+    <!-- ==================== VIEW 2: LYRICS READER (LYRICS ONLY) ==================== -->
+    <div id="lyrics-view" class="hidden flex-1 flex flex-col min-h-screen">
+      <!-- Top Bar: Back Button + Singer / Co-Singer Toggle -->
+      <header class="sticky top-0 z-30 bg-[#FFFDF9]/95 dark:bg-[#18110D]/95 backdrop-blur-md border-b border-amber-200/70 dark:border-amber-900/50 px-3 py-3 shadow-sm">
+        <div class="flex items-center justify-between gap-2">
+          <button id="btn-back-to-list" type="button" aria-label="పాటల జాబితాకు వెళ్ళండి"
+            class="px-3 py-2 rounded-xl bg-amber-100/80 dark:bg-stone-800 text-maroon-900 dark:text-amber-200 hover:bg-amber-200/80 active:scale-95 transition shrink-0 flex items-center gap-1 text-xs font-bold">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+            <span>పాటలు</span>
+          </button>
+
+          <!-- Segmented Pill: [ గాయకుడు | సహ గాయకుడు ] -->
+          <div class="relative inline-flex items-center bg-stone-200/90 dark:bg-stone-800 p-1 rounded-full border border-stone-300/70 dark:border-stone-700 shrink-0 shadow-inner" role="group" aria-label="గాయకుడి ఎంపిక">
+            <div id="role-pill-slider" class="role-pill-bg absolute top-1 bottom-1 left-1 w-[74px] rounded-full bg-gradient-to-r from-saffron-600 to-maroon-800 shadow-sm"></div>
+
+            <button id="btn-role-singer" type="button"
+              class="relative z-10 w-[74px] py-1.5 text-[11px] font-bold rounded-full text-center transition-colors text-white">
+              గాయకుడు
+            </button>
+            <button id="btn-role-cosinger" type="button"
+              class="relative z-10 w-[92px] py-1.5 text-[11px] font-bold rounded-full text-center transition-colors text-stone-700 dark:text-stone-300">
+              సహ గాయకుడు
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Lyrics Sheet (Only Song Lyrics - No Song Title Displayed) -->
+      <main class="flex-1 px-4 py-5 pb-32">
+        <div class="bg-white/90 dark:bg-[#19120E] rounded-3xl border border-amber-200/70 dark:border-amber-900/40 px-4 py-6 pb-10 shadow-sm">
+          <div id="lyrics-container" class="space-y-3 text-center"></div>
+        </div>
+      </main>
+
+      <!-- Bottom Pooja Controls -->
+      <div class="sticky bottom-0 z-30 bg-[#FFFDF9]/95 dark:bg-[#18110D]/95 backdrop-blur-md border-t border-amber-200/70 dark:border-amber-900/50 px-4 py-2.5 flex items-center justify-between gap-2">
+        <div class="flex items-center gap-1.5">
+          <button id="btn-font-down" type="button" aria-label="అక్షరాలు తగ్గించు"
+            class="px-3 py-2 rounded-xl bg-amber-100/80 dark:bg-stone-800 text-maroon-950 dark:text-amber-100 text-xs font-bold hover:bg-amber-200/80 active:scale-95 transition">
+            అ-
+          </button>
+          <button id="btn-font-up" type="button" aria-label="అక్షరాలు పెంచు"
+            class="px-3 py-2 rounded-xl bg-amber-100/80 dark:bg-stone-800 text-maroon-950 dark:text-amber-100 text-xs font-bold hover:bg-amber-200/80 active:scale-95 transition">
+            అ+
+          </button>
+        </div>
+
+        <!-- Admin Quick Edit / Delete inside Lyrics View -->
+        <div id="lyrics-admin-actions" class="hidden flex items-center gap-1.5">
+          <button id="btn-lyrics-edit" type="button"
+            class="px-3 py-2 rounded-xl bg-amber-200/90 dark:bg-amber-900/60 text-maroon-950 dark:text-amber-200 text-xs font-bold flex items-center gap-1 active:scale-95 transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            మార్చు
+          </button>
+          <button id="btn-lyrics-delete" type="button" aria-label="పాట తొలగించు"
+            class="p-2 rounded-xl bg-red-100 dark:bg-red-950/60 text-red-700 dark:text-red-400 active:scale-95 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          </button>
+        </div>
+
+        <button id="btn-theme-toggle-lyrics" type="button" aria-label="పూజ రాత్రి మోడ్"
+          class="px-3 py-2 rounded-xl bg-stone-200/80 dark:bg-stone-800 text-stone-800 dark:text-amber-200 text-xs font-semibold flex items-center gap-1.5 hover:bg-stone-300/80 active:scale-95 transition">
+          <svg class="w-4 h-4 hidden dark:block text-amber-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+          <svg class="w-4 h-4 block dark:hidden text-maroon-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <span class="dark:hidden">రాత్రి</span>
+          <span class="hidden dark:inline">పగలు</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==================== MODAL 1: ADMIN LOGIN ==================== -->
+    <div id="admin-login-modal" class="hidden fixed inset-0 z-50 bg-black/65 backdrop-blur-sm items-end sm:items-center justify-center p-4">
+      <div class="bg-white dark:bg-stone-900 w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-amber-200/60 dark:border-stone-800">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-maroon-900 text-amber-300 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-stone-900 dark:text-white">అడ్మిన్ లాగిన్</h3>
+              <p class="text-xs text-stone-500 dark:text-stone-400">పాటలు & సాహిత్యం నిర్వహణ</p>
+            </div>
+          </div>
+          <button id="btn-close-login" type="button" class="p-2 rounded-xl text-stone-400 hover:text-stone-600 dark:hover:text-stone-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label for="admin-password-input" class="block text-xs font-semibold text-stone-700 dark:text-stone-300 mb-1.5">అడ్మిన్ పిన్</label>
+            <input id="admin-password-input" type="password" inputmode="numeric" autocomplete="off" placeholder="పిన్ నమోదు చేయండి"
+              class="w-full px-4 py-3 rounded-xl bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-saffron-500" />
+            <p id="admin-login-error" class="hidden text-xs text-red-600 dark:text-red-400 mt-1.5 font-medium">
+              తప్పు పిన్. దయచేసి మళ్ళీ ప్రయత్నించండి.
+            </p>
+          </div>
+
+          <div class="flex gap-2.5 pt-1">
+            <button id="btn-cancel-login" type="button"
+              class="flex-1 py-3 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-sm font-semibold hover:bg-stone-200 transition">
+              రద్దు
+            </button>
+            <button id="btn-submit-login" type="button"
+              class="flex-1 py-3 rounded-xl bg-gradient-to-r from-saffron-600 to-maroon-800 text-white text-sm font-bold shadow-md hover:opacity-95 active:scale-95 transition">
+              లాగిన్
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== MODAL 2: ADD / EDIT SONG ==================== -->
+    <div id="song-editor-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex-col">
+      <div class="bg-[#FDF8F2] dark:bg-stone-900 w-full max-w-lg mx-auto flex-1 flex flex-col overflow-hidden sm:my-4 sm:rounded-3xl shadow-2xl border border-amber-200/50 dark:border-stone-800">
+        <div class="px-4 py-3.5 bg-maroon-900 text-white flex items-center justify-between shrink-0">
+          <h3 id="editor-modal-title" class="text-base font-bold font-serif">కొత్త భజన పాట చేర్చు</h3>
+          <button id="btn-close-editor" type="button" class="p-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-amber-100">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-4 space-y-4">
+          <input type="hidden" id="edit-song-id" value="" />
+
+          <div>
+            <label for="edit-song-title" class="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1.5">
+              పాట / భజన పేరు *
+            </label>
+            <input id="edit-song-title" type="text" placeholder="ఉదా: పల్లికట్టు శబరిమలైక్కి"
+              class="w-full px-3.5 py-3 rounded-xl bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-stone-900 dark:text-white text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-saffron-500" />
+          </div>
+
+          <!-- Editor Mode Tabs -->
+          <div class="flex items-center justify-between bg-stone-200/80 dark:bg-stone-800 p-1 rounded-xl">
+            <button id="tab-line-editor" type="button"
+              class="flex-1 py-2 text-xs font-bold rounded-lg bg-white dark:bg-stone-700 text-maroon-900 dark:text-amber-200 shadow-sm transition">
+              వరుసల వారీగా
+            </button>
+            <button id="tab-bulk-editor" type="button"
+              class="flex-1 py-2 text-xs font-bold rounded-lg text-stone-600 dark:text-stone-400 transition">
+              ఒకేసారి పేస్ట్ చేయండి
+            </button>
+          </div>
+
+          <!-- Line-by-Line Editor -->
+          <div id="editor-lines-panel" class="space-y-2.5">
+            <p class="text-xs font-semibold text-stone-600 dark:text-stone-400">ప్రతి పంక్తికి గాయకుడు, సహ గాయకుడు లేదా చరణం ఖాళీ ఎంచుకోండి:</p>
+            <div id="editor-lines-list" class="space-y-2.5"></div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2">
+              <button id="btn-add-line-singer" type="button"
+                class="py-2.5 px-2 rounded-xl bg-saffron-100 dark:bg-saffron-950/60 border border-saffron-300 dark:border-saffron-800 text-saffron-900 dark:text-saffron-300 text-xs font-bold flex items-center justify-center gap-1 active:scale-95 transition">
+                + గాయకుడు
+              </button>
+              <button id="btn-add-line-cosinger" type="button"
+                class="py-2.5 px-2 rounded-xl bg-sky-100 dark:bg-sky-950/60 border border-sky-300 dark:border-sky-800 text-sky-900 dark:text-sky-300 text-xs font-bold flex items-center justify-center gap-1 active:scale-95 transition">
+                + సహ గాయకుడు
+              </button>
+              <button id="btn-add-line-both" type="button"
+                class="py-2.5 px-2 rounded-xl bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-300 text-xs font-bold flex items-center justify-center gap-1 active:scale-95 transition">
+                + అందరూ
+              </button>
+              <button id="btn-add-line-gap" type="button"
+                class="py-2.5 px-2 rounded-xl bg-stone-200/90 dark:bg-stone-800 border border-stone-300 dark:border-stone-600 text-stone-800 dark:text-stone-200 text-xs font-bold flex items-center justify-center gap-1 active:scale-95 transition">
+                + చరణం ఖాళీ
+              </button>
+            </div>
+          </div>
+
+          <!-- Bulk Paste Editor -->
+          <div id="editor-bulk-panel" class="hidden space-y-2.5">
+            <div class="bg-amber-50 dark:bg-stone-800/90 border border-amber-200 dark:border-stone-700 rounded-xl p-3 text-xs text-stone-700 dark:text-stone-300 space-y-1">
+              <p class="font-bold text-maroon-900 dark:text-amber-300">సులభ విధానం:</p>
+              <p>ప్రతి పంక్తి ముందు <code class="font-mono font-bold text-saffron-700 dark:text-saffron-400">S:</code> (గాయకుడు), <code class="font-mono font-bold text-sky-700 dark:text-sky-400">C:</code> (సహ గాయకుడు), లేదా <code class="font-mono font-bold text-amber-700 dark:text-amber-400">B:</code> (అందరూ) రాయండి.</p>
+              <p>చరణాల మధ్య ఖాళీ కోసం <span class="font-bold text-stone-900 dark:text-amber-200">ఒక ఖాళీ లైన్ (Enter)</span> లేదా <code class="font-mono font-bold">G:</code> ఇవ్వండి.</p>
+            </div>
+            <textarea id="bulk-lyrics-textarea" rows="11"
+              placeholder="S: పల్లికట్టు శబరిమలైక్కి&#10;C: కల్లుమ్ ముల్లుమ్ కాలికి మెత్తెయి&#10;&#10;S: నేయ్యాభిషేకం చేయండి&#10;B: స్వామియే అయ్యప్పో - అయ్యప్పో స్వామియే"
+              class="w-full p-3.5 rounded-xl bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-stone-900 dark:text-white text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-saffron-500"></textarea>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white dark:bg-stone-900 border-t border-stone-200 dark:border-stone-800 flex gap-3 shrink-0">
+          <button id="btn-cancel-editor" type="button"
+            class="flex-1 py-3 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-sm font-semibold hover:bg-stone-200 transition">
+            రద్దు
+          </button>
+          <button id="btn-save-song" type="button"
+            class="flex-1 py-3 rounded-xl bg-gradient-to-r from-saffron-600 to-maroon-800 text-white text-sm font-bold shadow-lg hover:opacity-95 active:scale-95 transition">
+            భద్రపరచు
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== MODAL 3: DELETE CONFIRMATION ==================== -->
+    <div id="delete-confirm-modal" class="hidden fixed inset-0 z-50 bg-black/65 backdrop-blur-sm items-center justify-center p-4">
+      <div class="bg-white dark:bg-stone-900 w-full max-w-xs rounded-3xl p-6 shadow-2xl border border-red-200 dark:border-stone-800 text-center">
+        <div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-950/60 text-red-600 dark:text-red-400 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+          </svg>
+        </div>
+        <h3 class="text-base font-bold text-stone-900 dark:text-white">పాటను తొలగించాలా?</h3>
+        <p id="delete-song-name-label" class="text-xs text-stone-500 dark:text-stone-400 mt-1 mb-5">
+          ఈ పాటను శాశ్వతంగా తొలగించాలనుకుంటున్నారా?
+        </p>
+        <div class="flex gap-2.5">
+          <button id="btn-cancel-delete" type="button"
+            class="flex-1 py-2.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-xs font-bold">
+            రద్దు
+          </button>
+          <button id="btn-confirm-delete" type="button"
+            class="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-md">
+            తొలగించు
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div id="toast-banner" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-full bg-stone-900 dark:bg-amber-400 text-white dark:text-maroon-950 text-xs font-bold shadow-xl flex items-center gap-2 whitespace-nowrap">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 dark:bg-maroon-900"></span>
+      <span id="toast-message">విజయవంతంగా భద్రపరచబడింది</span>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // =========================================================================
+    // 1. CONFIGURATION, CLOUD SYNC & STATE
+    // =========================================================================
+    // Firebase Web App configuration for live multi-device song sync
+    const EXTERNAL_FIREBASE_CONFIG = {
+      apiKey: "AIzaSyBTNdQ4VXIl8Yv1uo9RAgo2lGGNVnmz4as",
+      authDomain: "ayyapa-bajanas.firebaseapp.com",
+      projectId: "ayyapa-bajanas",
+      storageBucket: "ayyapa-bajanas.firebasestorage.app",
+      messagingSenderId: "216096320663",
+      appId: "1:216096320663:web:f8f2578a6908f3304a8dd2"
+    };
+
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'ayyappa-bhajans-live';
+    const rawFirebaseConfig = typeof __firebase_config !== 'undefined'
+      ? JSON.parse(__firebase_config)
+      : EXTERNAL_FIREBASE_CONFIG;
+
+    const hasValidCloudConfig = Boolean(
+      rawFirebaseConfig &&
+      rawFirebaseConfig.apiKey &&
+      rawFirebaseConfig.apiKey !== 'YOUR_API_KEY' &&
+      rawFirebaseConfig.projectId &&
+      rawFirebaseConfig.projectId !== 'YOUR_PROJECT_ID'
+    );
+
+    const CACHE_KEY = 'ayyappa_bhajans_cloud_cache_te_v1';
+    const ADMIN_SESSION_KEY = 'ayyappa_bhajans_admin_auth_v3';
+    const THEME_KEY = 'ayyappa_bhajans_theme_v3';
+    const ADMIN_PIN = '0507';
+
+    let db = null;
+    let auth = null;
+    let currentUser = null;
+    let isCloudConnected = false;
+
+    let songs = [];
+    let activeSongId = null;
+    let activeRole = 'singer';
+    let fontScale = 1;
+    let isAdmin = false;
+    let songIdPendingDelete = null;
+    let currentEditorTab = 'lines';
+    let toastTimer = null;
+
+    function safeGetStorage(storageObj, key) {
+      try {
+        return storageObj.getItem(key);
+      } catch (err) {
+        return null;
+      }
+    }
+
+    function safeSetStorage(storageObj, key, value) {
+      try {
+        storageObj.setItem(key, value);
+      } catch (err) {
+        // Ignore storage errors in sandboxed iframes
+      }
+    }
+
+    function safeRemoveStorage(storageObj, key) {
+      try {
+        storageObj.removeItem(key);
+      } catch (err) {
+        // Ignore storage errors in sandboxed iframes
+      }
+    }
+
+    function updateSyncStatusUI(mode) {
+      const dot = document.getElementById('sync-status-dot');
+      const text = document.getElementById('sync-status-text');
+      if (!dot || !text) return;
+
+      if (mode === 'cloud') {
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-emerald-500';
+        text.textContent = 'లైవ్ సింక్ సిద్ధం';
+      } else if (mode === 'setup') {
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-amber-500';
+        text.textContent = 'ఆఫ్‌లైన్ మోడ్';
+      } else {
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-saffron-500';
+        text.textContent = 'ఆఫ్‌లైన్ సిద్ధం';
+      }
+    }
+
+    // =========================================================================
+    // 2. DEFAULT TELUGU AYYAPPA BHAJANS & CLOUD PERSISTENCE
+    // =========================================================================
+    const DEFAULT_SONGS = [
+      {
+        id: 'song-1',
+        order: 1,
+        title: 'జీవితంలో ఒకసారైనా శబరి యాత్ర చేయరా',
+        lines: [
+          { role: 'singer', text: 'జీవితంలో ఒకసారైనా శబరి యాత్ర చేయరా' },
+          { role: 'cosinger', text: 'శబరి యాత్ర చేయరా అయ్యప్పను చూడరా' },
+          { role: 'gap', text: '' },
+          { role: 'singer', text: 'ఇరుముడిని కట్టుకొని అయ్యప్పను తలచుకొని' },
+          { role: 'cosinger', text: 'శరణు ఘోష పాడుకుంటూ శబరిగిరికి చేరరా' },
+          { role: 'both', text: 'స్వామియే శరణం అయ్యప్ప!' }
+        ]
+      },
+      {
+        id: 'song-2',
+        order: 2,
+        title: 'పల్లికట్టు శబరిమలైక్కి',
+        lines: [
+          { role: 'singer', text: 'పల్లికట్టు శబరిమలైక్కి కల్లుమ్ ముల్లుమ్ కాలికి మెత్తెయి' },
+          { role: 'cosinger', text: 'స్వామియే అయ్యప్పో - అయ్యప్పో స్వామియే' },
+          { role: 'gap', text: '' },
+          { role: 'singer', text: 'నెయ్యాభిషేకం స్వామిక్కే కర్పూర దీపం స్వామిక్కే' },
+          { role: 'cosinger', text: 'స్వామియే అయ్యప్పో - అయ్యప్పో స్వామియే' },
+          { role: 'both', text: 'భగవాన్ శరణం భగవతి శరణం - దేవన్ శరణం దేవి శరణం' }
+        ]
+      },
+      {
+        id: 'song-3',
+        order: 3,
+        title: 'భగవాన్ శరణం భగవతి శరణం',
+        lines: [
+          { role: 'singer', text: 'భగవాన్ శరణం భగవతి శరణం' },
+          { role: 'cosinger', text: 'శరణం శరణం అయ్యప్ప' },
+          { role: 'gap', text: '' },
+          { role: 'singer', text: 'దేవన్ శరణం దేవి శరణం' },
+          { role: 'cosinger', text: 'శరణం శరణం అయ్యప్ప' },
+          { role: 'both', text: 'స్వామియే శరణం అయ్యప్ప!' }
+        ]
+      },
+      {
+        id: 'song-4',
+        order: 4,
+        title: 'హరివరాసనం విశ్వమోహనం',
+        lines: [
+          { role: 'singer', text: 'హరివరాసనం విశ్వమోహనం హరిదధీశ్వరం ఆరాధ్యపాదుకం' },
+          { role: 'cosinger', text: 'అరివిమర్దనం నిత్యనర్తనం హరిహరాత్మజం దేవమాశ్రయే' },
+          { role: 'gap', text: '' },
+          { role: 'singer', text: 'శరణకీర్తనం శక్తమానసం భరణలోలుపం నర్తనాలసం' },
+          { role: 'cosinger', text: 'అరుణభాసురం భూతనాయకం హరిహరాత్మజం దేవమాశ్రయే' },
+          { role: 'both', text: 'స్వామియే శరణం అయ్యప్ప!' }
+        ]
+      },
+      {
+        id: 'song-5',
+        order: 5,
+        title: 'శ్రీ అయ్యప్ప శరణు ఘోష',
+        lines: [
+          { role: 'singer', text: 'స్వామియే శరణం అయ్యప్ప' },
+          { role: 'cosinger', text: 'హరిహర సుతనే శరణం అయ్యప్ప' },
+          { role: 'singer', text: 'మణికంఠ స్వామియే శరణం అయ్యప్ప' },
+          { role: 'cosinger', text: 'పంబ వాసనే శరణం అయ్యప్ప' },
+          { role: 'both', text: 'స్వామియే శరణం అయ్యప్ప!' }
+        ]
+      }
+    ];
+
+    function getPublicSongsCollection() {
+      return collection(db, 'artifacts', appId, 'public', 'data', 'bhajan_songs');
+    }
+
+    function getPublicSongDoc(songId) {
+      return doc(db, 'artifacts', appId, 'public', 'data', 'bhajan_songs', songId);
+    }
+
+    function loadCachedSongs() {
+      const raw = safeGetStorage(localStorage, CACHE_KEY);
+      if (raw) {
+        try {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed;
+          }
+        } catch (err) {
+          // Ignore invalid JSON
+        }
+      }
+      return DEFAULT_SONGS.map(s => ({ ...s, lines: [...s.lines] }));
+    }
+
+    function saveCachedSongs() {
+      safeSetStorage(localStorage, CACHE_KEY, JSON.stringify(songs));
+    }
+
+    async function seedDefaultSongsToCloud() {
+      if (!isCloudConnected || !currentUser) return;
+      for (const song of DEFAULT_SONGS) {
+        await setDoc(getPublicSongDoc(song.id), {
+          title: song.title,
+          order: song.order,
+          lines: song.lines,
+          updatedAt: Date.now()
+        });
+      }
+    }
+
+    async function upsertSongToCloud(songObj) {
+      saveCachedSongs();
+      if (!isCloudConnected || !currentUser) return;
+      try {
+        await setDoc(getPublicSongDoc(songObj.id), {
+          title: songObj.title,
+          order: typeof songObj.order === 'number' ? songObj.order : Date.now(),
+          lines: songObj.lines,
+          updatedAt: Date.now()
+        });
+      } catch (err) {
+        showToast('క్లౌడ్ సేవ్ లోపం: ఇంటర్నెట్ తనిఖీ చేయండి');
+      }
+    }
+
+    async function removeSongFromCloud(songId) {
+      saveCachedSongs();
+      if (!isCloudConnected || !currentUser) return;
+      try {
+        await deleteDoc(getPublicSongDoc(songId));
+      } catch (err) {
+        showToast('క్లౌడ్ తొలగింపు లోపం');
+      }
+    }
+
+    async function initCloudSync() {
+      if (!hasValidCloudConfig) {
+        updateSyncStatusUI('setup');
+        return;
+      }
+
+      try {
+        const app = initializeApp(rawFirebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          const cred = await signInWithCustomToken(auth, __initial_auth_token);
+          currentUser = cred.user;
+        } else {
+          const cred = await signInAnonymously(auth);
+          currentUser = cred.user;
+        }
+
+        if (!currentUser) return;
+        isCloudConnected = true;
+        updateSyncStatusUI('cloud');
+
+        let seededOnce = false;
+        onSnapshot(
+          getPublicSongsCollection(),
+          async (snapshot) => {
+            if (snapshot.empty && !seededOnce) {
+              seededOnce = true;
+              await seedDefaultSongsToCloud();
+              return;
+            }
+
+            const cloudSongs = [];
+            snapshot.forEach((docSnap) => {
+              const data = docSnap.data();
+              if (data && data.title && Array.isArray(data.lines)) {
+                cloudSongs.push({
+                  id: docSnap.id,
+                  title: data.title,
+                  order: typeof data.order === 'number' ? data.order : 999,
+                  lines: data.lines
+                });
+              }
+            });
+
+            // Sort newest custom songs (negative order) first, then default order
+            cloudSongs.sort((a, b) => a.order - b.order);
+
+            songs = cloudSongs;
+            saveCachedSongs();
+            renderSongList();
+
+            if (activeSongId) {
+              const stillExists = songs.some(s => s.id === activeSongId);
+              if (stillExists) {
+                renderLyricsContent();
+              } else {
+                closeLyricsView();
+              }
+            }
+          },
+          () => {
+            updateSyncStatusUI('offline');
+          }
+        );
+      } catch (err) {
+        updateSyncStatusUI('offline');
+      }
+    }
+
+    // =========================================================================
+    // 3. MODAL DISPLAY HELPERS
+    // =========================================================================
+    function showModal(el, displayType = 'flex') {
+      if (!el) return;
+      el.classList.remove('hidden');
+      el.style.display = displayType;
+    }
+
+    function hideModal(el) {
+      if (!el) return;
+      el.classList.add('hidden');
+      el.style.display = 'none';
+    }
+
+    // =========================================================================
+    // 4. ADMIN AUTHENTICATION
+    // =========================================================================
+    function handleAdminAuthClick() {
+      if (isAdmin) {
+        isAdmin = false;
+        safeRemoveStorage(sessionStorage, ADMIN_SESSION_KEY);
+        updateAdminUI();
+        renderSongList();
+        showToast('అడ్మిన్ లాగౌట్ పూర్తయింది');
+      } else {
+        openAdminLoginModal();
+      }
+    }
+
+    function openAdminLoginModal() {
+      const modal = document.getElementById('admin-login-modal');
+      const input = document.getElementById('admin-password-input');
+      const err = document.getElementById('admin-login-error');
+      if (input) input.value = '';
+      if (err) err.classList.add('hidden');
+      showModal(modal, 'flex');
+      setTimeout(() => {
+        if (input) input.focus();
+      }, 60);
+    }
+
+    function closeAdminLoginModal() {
+      hideModal(document.getElementById('admin-login-modal'));
+    }
+
+    function attemptAdminLogin() {
+      const input = document.getElementById('admin-password-input');
+      const err = document.getElementById('admin-login-error');
+      const entered = (input ? input.value : '').trim();
+
+      if (entered === ADMIN_PIN) {
+        isAdmin = true;
+        safeSetStorage(sessionStorage, ADMIN_SESSION_KEY, 'true');
+        closeAdminLoginModal();
+        updateAdminUI();
+        renderSongList();
+        showToast('అడ్మిన్ లాగిన్ విజయవంతమైంది');
+      } else {
+        if (err) err.classList.remove('hidden');
+        if (input) {
+          input.value = '';
+          input.focus();
+        }
+      }
+    }
+
+    function updateAdminUI() {
+      const authLabel = document.getElementById('admin-auth-label');
+      const authBtn = document.getElementById('btn-admin-auth');
+      const toolbar = document.getElementById('admin-toolbar');
+      const lyricsAdminActions = document.getElementById('lyrics-admin-actions');
+
+      if (authLabel) {
+        authLabel.textContent = isAdmin ? 'లాగౌట్' : 'అడ్మిన్';
+      }
+      if (authBtn) {
+        if (isAdmin) {
+          authBtn.classList.remove('bg-amber-400', 'text-maroon-950', 'hover:bg-amber-300');
+          authBtn.classList.add('bg-emerald-500', 'text-white', 'hover:bg-emerald-400');
+        } else {
+          authBtn.classList.add('bg-amber-400', 'text-maroon-950', 'hover:bg-amber-300');
+          authBtn.classList.remove('bg-emerald-500', 'text-white', 'hover:bg-emerald-400');
+        }
+      }
+      if (toolbar) {
+        toolbar.classList.toggle('hidden', !isAdmin);
+      }
+      if (lyricsAdminActions) {
+        lyricsAdminActions.classList.toggle('hidden', !isAdmin);
+      }
+    }
+
+    // =========================================================================
+    // 5. TELUGU-TO-ENGLISH PHONETIC SEARCH & SONGS LIST RENDERING
+    // =========================================================================
+    const TELUGU_TO_ENG_MAP = {
+      'అ': 'a', 'ఆ': 'aa', 'ఇ': 'i', 'ఈ': 'ee', 'ఉ': 'u', 'ఊ': 'oo',
+      'ఋ': 'ru', 'ఎ': 'e', 'ఏ': 'e', 'ఐ': 'ai', 'ఒ': 'o', 'ఓ': 'o', 'ఔ': 'au',
+      'క': 'k', 'ఖ': 'kh', 'గ': 'g', 'ఘ': 'gh', 'ఙ': 'ng',
+      'చ': 'ch', 'ఛ': 'chh', 'జ': 'j', 'ఝ': 'jh', 'ఞ': 'ny',
+      'ట': 't', 'ఠ': 'th', 'డ': 'd', 'ఢ': 'dh', 'ణ': 'n',
+      'త': 't', 'థ': 'th', 'ద': 'd', 'ధ': 'dh', 'న': 'n',
+      'ప': 'p', 'ఫ': 'ph', 'బ': 'b', 'భ': 'bh', 'మ': 'm',
+      'య': 'y', 'ర': 'r', 'ల': 'l', 'వ': 'v', 'శ': 'sh', 'ష': 'sh', 'స': 's', 'హ': 'h',
+      'ళ': 'l', 'క్ష': 'ksh', 'ఱ': 'r',
+      'ా': 'aa', 'ి': 'i', 'ీ': 'ee', 'ు': 'u', 'ూ': 'oo', 'ృ': 'ru',
+      'ె': 'e', 'ే': 'e', 'ై': 'ai', 'ొ': 'o', 'ో': 'o', 'ౌ': 'au',
+      'ం': 'm', 'ః': 'h', '్': ''
+    };
+
+    const TELUGU_CONSONANTS = new Set([
+      'క','ఖ','గ','ఘ','ఙ','చ','ఛ','జ','ఝ','ఞ','ట','ఠ','డ','ఢ','ణ',
+      'త','థ','ద','ధ','న','ప','ఫ','బ','భ','మ','య','ర','ల','వ','శ','ష','స','హ','ళ','ఱ'
+    ]);
+
+    const TELUGU_MATRAS = new Set([
+      'ా','ి','ీ','ు','ూ','ృ','ె','ే','ై','ొ','ో','ౌ','్'
+    ]);
+
+    // Converts any Telugu string into phonetic English so English keyboard searches match automatically
+    function teluguToPhoneticEnglish(text) {
+      if (!text) return '';
+      let out = '';
+      const chars = Array.from(text);
+      for (let i = 0; i < chars.length; i++) {
+        const ch = chars[i];
+        const next = chars[i + 1];
+
+        if (ch === 'క' && next === '్' && chars[i + 2] === 'ష') {
+          out += 'ksh';
+          i += 2;
+          if (!TELUGU_MATRAS.has(chars[i + 1])) out += 'a';
+          continue;
+        }
+
+        if (TELUGU_CONSONANTS.has(ch)) {
+          out += TELUGU_TO_ENG_MAP[ch] || '';
+          if (!TELUGU_MATRAS.has(next)) {
+            out += 'a';
+          }
+        } else if (TELUGU_TO_ENG_MAP[ch] !== undefined) {
+          out += TELUGU_TO_ENG_MAP[ch];
+        } else {
+          out += ch.toLowerCase();
+        }
+      }
+      return out;
+    }
+
+    // Normalizes common English spelling variations (aa->a, ee->i, oo->u, ph->f, w->v)
+    function normalizePhonetic(str) {
+      return str
+        .toLowerCase()
+        .replace(/aa/g, 'a')
+        .replace(/ee/g, 'i')
+        .replace(/oo/g, 'u')
+        .replace(/ph/g, 'f')
+        .replace(/w/g, 'v')
+        .replace(/sh/g, 's')
+        .replace(/th/g, 't')
+        .replace(/dh/g, 'd')
+        .replace(/bh/g, 'b')
+        .replace(/kh/g, 'k')
+        .replace(/gh/g, 'g')
+        .replace(/ch/g, 'c')
+        .replace(/[^a-z0-9\u0C00-\u0C7F\s]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function matchesSongQuery(song, rawQuery) {
+      const q = rawQuery.trim().toLowerCase();
+      if (!q) return true;
+
+      // 1. Direct Telugu or exact substring match
+      if (song.title.toLowerCase().includes(q)) return true;
+      if (song.lines.some(l => l.text && l.text.toLowerCase().includes(q))) return true;
+
+      // 2. Phonetic English match against Telugu title & lyrics
+      const normQuery = normalizePhonetic(q);
+      if (!normQuery) return false;
+
+      const phoneticTitle = normalizePhonetic(teluguToPhoneticEnglish(song.title));
+      if (phoneticTitle.includes(normQuery)) return true;
+
+      return song.lines.some(l => {
+        if (!l.text) return false;
+        return normalizePhonetic(teluguToPhoneticEnglish(l.text)).includes(normQuery);
+      });
+    }
+
+    function renderSongList() {
+      const container = document.getElementById('songs-list-container');
+      const countLabel = document.getElementById('songs-count-label');
+      const searchInput = document.getElementById('search-input');
+      const clearBtn = document.getElementById('btn-clear-search');
+
+      const query = (searchInput ? searchInput.value : '').trim();
+      if (clearBtn) {
+        clearBtn.classList.toggle('hidden', query.length === 0);
+      }
+
+      const filtered = query
+        ? songs.filter(song => matchesSongQuery(song, query))
+        : songs;
+
+      if (countLabel) {
+        countLabel.textContent = query
+          ? `${filtered.length} పాటలు లభించాయి`
+          : `${songs.length} భజన పాటలు`;
+      }
+
+      if (!container) return;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 px-4 rounded-2xl bg-amber-50/70 dark:bg-stone-900/60 border border-amber-200/60 dark:border-stone-800">
+            <p class="text-sm font-bold text-stone-700 dark:text-stone-300">పాటలు ఏవీ కనిపించలేదు</p>
+            <p class="text-xs text-stone-500 dark:text-stone-400 mt-1">వేరే పదంతో వెతకండి లేదా కొత్త పాట చేర్చండి.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map((song, idx) => `
+        <div class="flex items-center justify-between gap-2 bg-white dark:bg-[#19120E] hover:bg-amber-50/80 dark:hover:bg-stone-800/70 border border-amber-200/70 dark:border-amber-900/40 rounded-2xl px-4 py-3.5 shadow-sm transition">
+          <button type="button" data-action="open-song" data-id="${escapeHtml(song.id)}"
+            class="flex-1 flex items-center gap-3 text-left min-w-0 py-0.5 active:scale-[0.99] transition">
+            <span class="w-7 h-7 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-maroon-900 dark:text-amber-300 text-xs font-extrabold flex items-center justify-center shrink-0">
+              ${idx + 1}<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#7C1D1D" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>అయ్యప్ప భజనలు - పాటలు & లిరిక్స్</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700;800&family=Noto+Serif+Telugu:wght@600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans Telugu"', 'sans-serif'],
+            serif: ['"Noto Serif Telugu"', 'serif'],
+          },
+          colors: {
+            saffron: {
+              50: '#FFF8F0',
+              100: '#FFEDD5',
+              200: '#FED7AA',
+              400: '#FB923C',
+              500: '#F97316',
+              600: '#EA580C',
+              700: '#C2410C',
+            },
+            maroon: {
+              800: '#7C1D1D',
+              900: '#581111',
+              950: '#3B0909',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      overscroll-behavior-y: contain;
+    }
+    .lyric-line {
+      transition: font-size 0.22s ease, opacity 0.22s ease, color 0.22s ease;
+    }
+    .role-pill-bg {
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  width 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+  </style>
+</head>
+<body class="bg-[#FFFDF9] text-stone-900 dark:bg-[#120D0A] dark:text-amber-50 min-h-screen font-sans antialiased selection:bg-saffron-200 selection:text-maroon-900">
+
+  <!-- Main Mobile App Container -->
+  <div id="app" class="max-w-[480px] mx-auto min-h-screen flex flex-col bg-[#FFFDF9] dark:bg-[#120D0A] shadow-2xl relative">
+
+    <!-- ==================== VIEW 1: SONGS LIST ==================== -->
+    <div id="home-view" class="flex-1 flex flex-col">
+      <!-- Top App Bar -->
+      <header class="sticky top-0 z-30 bg-gradient-to-r from-maroon-900 via-maroon-800 to-[#8B2518] text-amber-50 px-4 pt-4 pb-4 shadow-lg rounded-b-2xl">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-300 to-saffron-500 flex items-center justify-center shadow-inner shrink-0 border border-amber-200/40">
+              <svg class="w-6 h-6 text-maroon-950" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C10.5 4.8 9 6.8 9 9a3 3 0 0 0 6 0c0-2.2-1.5-4.2-3-7zm0 11c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4zm-6 7h12v1.5H6V20z"/>
+              </svg>
+            </div>
+            <div class="truncate">
+              <p class="text-[11px] tracking-wide text-amber-300/95 font-semibold">స్వామియే శరణం అయ్యప్ప</p>
+              <h1 class="text-lg font-bold tracking-tight text-white truncate font-serif">అయ్యప్ప భజనలు</h1>
+            </div>
+          </div>
+
+          <!-- Header Controls: Night Mode + Admin Button -->
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button id="btn-theme-toggle" type="button" aria-label="రాత్రి మోడ్ మార్చండి"
+              class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 active:scale-95 text-amber-200 transition">
+              <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+              </svg>
+              <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+
+            <button id="btn-admin-auth" type="button"
+              class="px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition active:scale-95 shadow-sm bg-amber-400 text-maroon-950 hover:bg-amber-300">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <span id="admin-auth-label">అడ్మిన్</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Search Input -->
+        <div class="mt-3.5 relative">
+          <svg class="w-4 h-4 text-amber-200/70 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input id="search-input" type="text" placeholder="పాట పేరు లేదా సాహిత్యం వెతకండి..."
+            class="w-full pl-10 pr-9 py-2.5 rounded-xl bg-black/25 border border-amber-300/20 text-white placeholder-amber-200/70 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/70 transition" />
+          <button id="btn-clear-search" type="button" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-amber-200/80 hover:text-white p-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Admin Control Bar (Shown only when Admin is logged in) -->
+      <div id="admin-toolbar" class="hidden px-4 pt-3.5">
+        <div class="bg-amber-100/95 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-700/60 rounded-2xl p-3 flex items-center justify-between gap-2 shadow-sm">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0"></span>
+            <div class="truncate">
+              <p class="text-xs font-bold text-maroon-900 dark:text-amber-300">అడ్మిన్ మోడ్ సిద్ధంగా ఉంది</p>
+              <button id="btn-reset-songs" type="button" class="text-[11px] underline text-stone-600 dark:text-amber-200/70 hover:text-maroon-900">
+                పాత పాటలు పునరుద్ధరించు
+              </button>
+            </div>
+          </div>
+          <button id="btn-add-new-song" type="button"
+            class="px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-saffron-600 to-maroon-800 hover:from-saffron-500 hover:to-maroon-700 text-white text-xs font-bold shadow-md flex items-center gap-1.5 active:scale-95 transition shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+            కొత్త పాట చేర్చు
+          </button>
+        </div>
+      </div>
+
+      <!-- Song Counter -->
+      <div class="px-4 pt-4 pb-2 flex items-center justify-between text-xs text-stone-500 dark:text-amber-200/60">
+        <span id="songs-count-label" class="font-medium">5 భజన పాటలు</span>
+        <span id="sync-status-badge" class="flex items-center gap-1.5">
+          <span id="sync-status-dot" class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          <span id="sync-status-text">కనెక్ట్ అవుతోంది...</span>
+        </span>
+      </div>
+
+      <!-- Vertical List of Song Titles -->
+      <main id="songs-list-container" class="flex-1 px-4 pb-8 space-y-2.5"></main>
+    </div>
+
+    <!-- ==================== VIEW 2: LYRICS READER (LYRICS ONLY) ==================== -->
+    <div id="lyrics-view" class="hidden flex-1 flex flex-col min-h-screen">
+      <!-- Top Bar: Back Button + Singer / Co-Singer Toggle -->
+      <header class="sticky top-0 z-30 bg-[#FFFDF9]/95 dark:bg-[#18110D]/95 backdrop-blur-md border-b border-amber-200/70 dark:border-amber-900/50 px-3 py-3 shadow-sm">
+        <div class="flex items-center justify-between gap-2">
+          <button id="btn-back-to-list" type="button" aria-label="పాటల జాబితాకు వెళ్ళండి"
+            class="px-3 py-2 rounded-xl bg-amber-100/80 dark:bg-stone-800 text-maroon-900 dark:text-amber-200 hover:bg-amber-200/80 active:scale-95 transition shrink-0 flex items-center gap-1 text-xs font-bold">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+            <span>పాటలు</span>
+          </button>
+
+          <!-- Segmented Pill: [ గాయకుడు | సహ గాయకుడు ] -->
+          <div class="relative inline-flex items-center bg-stone-200/90 dark:bg-stone-800 p-1 rounded-full border border-stone-300/70 dark:border-stone-700 shrink-0 shadow-inner" role="group" aria-label="గాయకుడి ఎంపిక">
+            <div id="role-pill-slider" class="role-pill-bg absolute top-1 bottom-1 left-1 w-[74px] rounded-full bg-gradient-to-r from-saffron-600 to-maroon-800 shadow-sm"></div>
+
+            <button id="btn-role-singer" type="button"
+              class="relative z-10 w-[74px] py-1.5 text-[11px] font-bold rounded-full text-center transition-colors text-white">
+              గాయకుడు
+            </button>
+            <button id="btn-role-cosinger" type="button"
+              class="relative z-10 w-[92px] py-1.5 text-[11px] font-bold rounded-full text-center transition-colors text-stone-700 dark:text-stone-300">
+              సహ గాయకుడు
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Lyrics Sheet (Only Song Lyrics - No Song Title Displayed) -->
+      <main class="flex-1 px-4 py-5 pb-32">
+        <div class="bg-white/90 dark:bg-[#19120E] rounded-3xl border border-amber-200/70 dark:border-amber-900/40 px-4 py-6 pb-10 shadow-sm">
+          <div id="lyrics-container" class="space-y-3 text-center"></div>
+        </div>
+      </main>
+
+      <!-- Bottom Pooja Controls -->
+      <div class="sticky bottom-0 z-30 bg-[#FFFDF9]/95 dark:bg-[#18110D]/95 backdrop-blur-md border-t border-amber-200/70 dark:border-amber-900/50 px-4 py-2.5 flex items-center justify-between gap-2">
+        <div class="flex items-center gap-1.5">
+          <button id="btn-font-down" type="button" aria-label="అక్షరాలు తగ్గించు"
+            class="px-3 py-2 rounded-xl bg-amber-100/80 dark:bg-stone-800 text-maroon-950 dark:text-amber-100 text-xs font-bold hover:bg-amber-200/80 active:scale-95 transition">
+            అ-
+          </button>
+          <button id="btn-font-up" type="button" aria-label="అక్షరాలు పెంచు"
+            class="px-3 py-2 rounded-xl bg-amber-100/80 dark:bg-stone-800 text-maroon-950 dark:text-amber-100 text-xs font-bold hover:bg-amber-200/80 active:scale-95 transition">
+            అ+
+          </button>
+        </div>
+
+        <!-- Admin Quick Edit / Delete inside Lyrics View -->
+        <div id="lyrics-admin-actions" class="hidden flex items-center gap-1.5">
+          <button id="btn-lyrics-edit" type="button"
+            class="px-3 py-2 rounded-xl bg-amber-200/90 dark:bg-amber-900/60 text-maroon-950 dark:text-amber-200 text-xs font-bold flex items-center gap-1 active:scale-95 transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            మార్చు
+          </button>
+          <button id="btn-lyrics-delete" type="button" aria-label="పాట తొలగించు"
+            class="p-2 rounded-xl bg-red-100 dark:bg-red-950/60 text-red-700 dark:text-red-400 active:scale-95 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          </button>
+        </div>
+
+        <button id="btn-theme-toggle-lyrics" type="button" aria-label="పూజ రాత్రి మోడ్"
+          class="px-3 py-2 rounded-xl bg-stone-200/80 dark:bg-stone-800 text-stone-800 dark:text-amber-200 text-xs font-semibold flex items-center gap-1.5 hover:bg-stone-300/80 active:scale-95 transition">
+          <svg class="w-4 h-4 hidden dark:block text-amber-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+          <svg class="w-4 h-4 block dark:hidden text-maroon-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <span class="dark:hidden">రాత్రి</span>
+          <span class="hidden dark:inline">పగలు</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==================== MODAL 1: ADMIN LOGIN ==================== -->
+    <div id="admin-login-modal" class="hidden fixed inset-0 z-50 bg-black/65 backdrop-blur-sm items-end sm:items-center justify-center p-4">
+      <div class="bg-white dark:bg-stone-900 w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-amber-200/60 dark:border-stone-800">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-maroon-900 text-amber-300 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-stone-900 dark:text-white">అడ్మిన్ లాగిన్</h3>
+              <p class="text-xs text-stone-500 dark:text-stone-400">పాటలు & సాహిత్యం నిర్వహణ</p>
+            </div>
+          </div>
+          <button id="btn-close-login" type="button" class="p-2 rounded-xl text-stone-400 hover:text-stone-600 dark:hover:text-stone-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label for="admin-password-input" class="block text-xs font-semibold text-stone-700 dark:text-stone-300 mb-1.5">అడ్మిన్ పిన్</label>
+            <input id="admin-password-input" type="password" inputmode="numeric" autocomplete="off" placeholder="పిన్ నమోదు చేయండి"
+              class="w-full px-4 py-3 rounded-xl bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-saffron-500" />
+            <p id="admin-login-error" class="hidden text-xs text-red-600 dark:text-red-400 mt-1.5 font-medium">
+              తప్పు పిన్. దయచేసి మళ్ళీ ప్రయత్నించండి.
+            </p>
+          </div>
+
+          <div class="flex gap-2.5 pt-1">
+            <button id="btn-cancel-login" type="button"
+              class="flex-1 py-3 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-sm font-semibold hover:bg-stone-200 transition">
+              రద్దు
+            </button>
+            <button id="btn-submit-login" type="button"
+              class="flex-1 py-3 rounded-xl bg-gradient-to-r from-saffron-600 to-maroon-800 text-white text-sm font-bold shadow-md hover:opacity-95 active:scale-95 transition">
+              లాగిన్
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== MODAL 2: ADD / EDIT SONG ==================== -->
+    <div id="song-editor-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex-col">
+      <div class="bg-[#FDF8F2] dark:bg-stone-900 w-full max-w-lg mx-auto flex-1 flex flex-col overflow-hidden sm:my-4 sm:rounded-3xl shadow-2xl border border-amber-200/50 dark:border-stone-800">
+        <div class="px-4 py-3.5 bg-maroon-900 text-white flex items-center justify-between shrink-0">
+          <h3 id="editor-modal-title" class="text-base font-bold font-serif">కొత్త భజన పాట చేర్చు</h3>
+          <button id="btn-close-editor" type="button" class="p-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-amber-100">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-4 space-y-4">
+          <input type="hidden" id="edit-song-id" value="" />
+
+          <div>
+            <label for="edit-song-title" class="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1.5">
+              పాట / భజన పేరు *
+            </label>
+            <input id="edit-song-title" type="text" placeholder="ఉదా: పల్లికట్టు శబరిమలైక్కి"
+              class="w-full px-3.5 py-3 rounded-xl bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-stone-900 dark:text-white text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-saffron-500" />
+          </div>
+
+          <!-- Editor Mode Tabs -->
+          <div class="flex items-center justify-between bg-stone-200/80 dark:bg-stone-800 p-1 rounded-xl">
+            <button id="tab-line-editor" type="button"
+              class="flex-1 py-2 text-xs font-bold rounded-lg bg-white dark:bg-stone-700 text-maroon-900 dark:text-amber-200 shadow-sm transition">
+              వరుసల వారీగా
+            </button>
+            <button id="tab-bulk-editor" type="button"
+              class="flex-1 py-2 text-xs font-bold rounded-lg text-stone-600 dark:text-stone-400 transition">
+              ఒకేసారి పేస్ట్ చేయండి
+            </button>
+          </div>
+
+          <!-- Line-by-Line Editor -->
+          <div id="editor-lines-panel" class="space-y-2.5">
+            <p class="text-xs font-semibold text-stone-600 dark:text-stone-400">ప్రతి పంక్తికి గాయకుడు, సహ గాయకుడు లేదా చరణం ఖాళీ ఎంచుకోండి:</p>
+            <div id="editor-lines-list" class="space-y-2.5"></div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2">
+              <button id="btn-add-line-singer" type="button"
+                class="py-2.5 px-2 rounded-xl bg-saffron-100 dark:bg-saffron-950/60 border border-saffron-300 dark:border-saffron-800 text-saffron-900 dark:text-saffron-300 text-xs font-bold flex items-center justify-center gap-1 active:scale-95 transition">
+                + గాయకుడు
+              </button>
+              <button id="btn-add-line-cosinger" type="button"
+                class="py-2.5 px-2 rounded-xl bg-sky-100 dark:bg-sky-950/60 border border-sky-300 dark:border-sky-800 text-sky-900 dark:text-sky-300 text-xs font-bold flex items-center justify-center gap-1 active:scale-95 transition">
+                + సహ గాయకుడు
+              </button>
+              <button id="btn-add-line-both" type="button"
+                class="py-2.5 px-2 rounded-xl bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-300 text-xs font-bold flex items-center justify-center gap-1 active:scale-95 transition">
+                + అందరూ
+              </button>
+              <button id="btn-add-line-gap" type="button"
+                class="py-2.5 px-2 rounded-xl bg-stone-200/90 dark:bg-stone-800 border border-stone-300 dark:border-stone-600 text-stone-800 dark:text-stone-200 text-xs font-bold flex items-center justify-center gap-1 active:scale-95 transition">
+                + చరణం ఖాళీ
+              </button>
+            </div>
+          </div>
+
+          <!-- Bulk Paste Editor -->
+          <div id="editor-bulk-panel" class="hidden space-y-2.5">
+            <div class="bg-amber-50 dark:bg-stone-800/90 border border-amber-200 dark:border-stone-700 rounded-xl p-3 text-xs text-stone-700 dark:text-stone-300 space-y-1">
+              <p class="font-bold text-maroon-900 dark:text-amber-300">సులభ విధానం:</p>
+              <p>ప్రతి పంక్తి ముందు <code class="font-mono font-bold text-saffron-700 dark:text-saffron-400">S:</code> (గాయకుడు), <code class="font-mono font-bold text-sky-700 dark:text-sky-400">C:</code> (సహ గాయకుడు), లేదా <code class="font-mono font-bold text-amber-700 dark:text-amber-400">B:</code> (అందరూ) రాయండి.</p>
+              <p>చరణాల మధ్య ఖాళీ కోసం <span class="font-bold text-stone-900 dark:text-amber-200">ఒక ఖాళీ లైన్ (Enter)</span> లేదా <code class="font-mono font-bold">G:</code> ఇవ్వండి.</p>
+            </div>
+            <textarea id="bulk-lyrics-textarea" rows="11"
+              placeholder="S: పల్లికట్టు శబరిమలైక్కి&#10;C: కల్లుమ్ ముల్లుమ్ కాలికి మెత్తెయి&#10;&#10;S: నేయ్యాభిషేకం చేయండి&#10;B: స్వామియే అయ్యప్పో - అయ్యప్పో స్వామియే"
+              class="w-full p-3.5 rounded-xl bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-stone-900 dark:text-white text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-saffron-500"></textarea>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white dark:bg-stone-900 border-t border-stone-200 dark:border-stone-800 flex gap-3 shrink-0">
+          <button id="btn-cancel-editor" type="button"
+            class="flex-1 py-3 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-sm font-semibold hover:bg-stone-200 transition">
+            రద్దు
+          </button>
+          <button id="btn-save-song" type="button"
+            class="flex-1 py-3 rounded-xl bg-gradient-to-r from-saffron-600 to-maroon-800 text-white text-sm font-bold shadow-lg hover:opacity-95 active:scale-95 transition">
+            భద్రపరచు
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== MODAL 3: DELETE CONFIRMATION ==================== -->
+    <div id="delete-confirm-modal" class="hidden fixed inset-0 z-50 bg-black/65 backdrop-blur-sm items-center justify-center p-4">
+      <div class="bg-white dark:bg-stone-900 w-full max-w-xs rounded-3xl p-6 shadow-2xl border border-red-200 dark:border-stone-800 text-center">
+        <div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-950/60 text-red-600 dark:text-red-400 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+          </svg>
+        </div>
+        <h3 class="text-base font-bold text-stone-900 dark:text-white">పాటను తొలగించాలా?</h3>
+        <p id="delete-song-name-label" class="text-xs text-stone-500 dark:text-stone-400 mt-1 mb-5">
+          ఈ పాటను శాశ్వతంగా తొలగించాలనుకుంటున్నారా?
+        </p>
+        <div class="flex gap-2.5">
+          <button id="btn-cancel-delete" type="button"
+            class="flex-1 py-2.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-xs font-bold">
+            రద్దు
+          </button>
+          <button id="btn-confirm-delete" type="button"
+            class="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-md">
+            తొలగించు
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div id="toast-banner" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-full bg-stone-900 dark:bg-amber-400 text-white dark:text-maroon-950 text-xs font-bold shadow-xl flex items-center gap-2 whitespace-nowrap">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 dark:bg-maroon-900"></span>
+      <span id="toast-message">విజయవంతంగా భద్రపరచబడింది</span>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // =========================================================================
+    // 1. CONFIGURATION, CLOUD SYNC & STATE
+    // =========================================================================
+    // Firebase Web App configuration for live multi-device song sync
+    const EXTERNAL_FIREBASE_CONFIG = {
+      apiKey: "AIzaSyBTNdQ4VXIl8Yv1uo9RAgo2lGGNVnmz4as",
+      authDomain: "ayyapa-bajanas.firebaseapp.com",
+      projectId: "ayyapa-bajanas",
+      storageBucket: "ayyapa-bajanas.firebasestorage.app",
+      messagingSenderId: "216096320663",
+      appId: "1:216096320663:web:f8f2578a6908f3304a8dd2"
+    };
+
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'ayyappa-bhajans-live';
+    const rawFirebaseConfig = typeof __firebase_config !== 'undefined'
+      ? JSON.parse(__firebase_config)
+      : EXTERNAL_FIREBASE_CONFIG;
+
+    const hasValidCloudConfig = Boolean(
+      rawFirebaseConfig &&
+      rawFirebaseConfig.apiKey &&
+      rawFirebaseConfig.apiKey !== 'YOUR_API_KEY' &&
+      rawFirebaseConfig.projectId &&
+      rawFirebaseConfig.projectId !== 'YOUR_PROJECT_ID'
+    );
+
+    const CACHE_KEY = 'ayyappa_bhajans_cloud_cache_te_v1';
+    const ADMIN_SESSION_KEY = 'ayyappa_bhajans_admin_auth_v3';
+    const THEME_KEY = 'ayyappa_bhajans_theme_v3';
+    const ADMIN_PIN = '0507';
+
+    let db = null;
+    let auth = null;
+    let currentUser = null;
+    let isCloudConnected = false;
+
+    let songs = [];
+    let activeSongId = null;
+    let activeRole = 'singer';
+    let fontScale = 1;
+    let isAdmin = false;
+    let songIdPendingDelete = null;
+    let currentEditorTab = 'lines';
+    let toastTimer = null;
+
+    function safeGetStorage(storageObj, key) {
+      try {
+        return storageObj.getItem(key);
+      } catch (err) {
+        return null;
+      }
+    }
+
+    function safeSetStorage(storageObj, key, value) {
+      try {
+        storageObj.setItem(key, value);
+      } catch (err) {
+        // Ignore storage errors in sandboxed iframes
+      }
+    }
+
+    function safeRemoveStorage(storageObj, key) {
+      try {
+        storageObj.removeItem(key);
+      } catch (err) {
+        // Ignore storage errors in sandboxed iframes
+      }
+    }
+
+    function updateSyncStatusUI(mode) {
+      const dot = document.getElementById('sync-status-dot');
+      const text = document.getElementById('sync-status-text');
+      if (!dot || !text) return;
+
+      if (mode === 'cloud') {
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-emerald-500';
+        text.textContent = 'లైవ్ సింక్ సిద్ధం';
+      } else if (mode === 'setup') {
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-amber-500';
+        text.textContent = 'ఆఫ్‌లైన్ మోడ్';
+      } else {
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-saffron-500';
+        text.textContent = 'ఆఫ్‌లైన్ సిద్ధం';
+      }
+    }
+
+    // =========================================================================
+    // 2. DEFAULT TELUGU AYYAPPA BHAJANS & CLOUD PERSISTENCE
+    // =========================================================================
+    const DEFAULT_SONGS = [
+      {
+        id: 'song-1',
+        order: 1,
+        title: 'జీవితంలో ఒకసారైనా శబరి యాత్ర చేయరా',
+        lines: [
+          { role: 'singer', text: 'జీవితంలో ఒకసారైనా శబరి యాత్ర చేయరా' },
+          { role: 'cosinger', text: 'శబరి యాత్ర చేయరా అయ్యప్పను చూడరా' },
+          { role: 'gap', text: '' },
+          { role: 'singer', text: 'ఇరుముడిని కట్టుకొని అయ్యప్పను తలచుకొని' },
+          { role: 'cosinger', text: 'శరణు ఘోష పాడుకుంటూ శబరిగిరికి చేరరా' },
+          { role: 'both', text: 'స్వామియే శరణం అయ్యప్ప!' }
+        ]
+      },
+      {
+        id: 'song-2',
+        order: 2,
+        title: 'పల్లికట్టు శబరిమలైక్కి',
+        lines: [
+          { role: 'singer', text: 'పల్లికట్టు శబరిమలైక్కి కల్లుమ్ ముల్లుమ్ కాలికి మెత్తెయి' },
+          { role: 'cosinger', text: 'స్వామియే అయ్యప్పో - అయ్యప్పో స్వామియే' },
+          { role: 'gap', text: '' },
+          { role: 'singer', text: 'నెయ్యాభిషేకం స్వామిక్కే కర్పూర దీపం స్వామిక్కే' },
+          { role: 'cosinger', text: 'స్వామియే అయ్యప్పో - అయ్యప్పో స్వామియే' },
+          { role: 'both', text: 'భగవాన్ శరణం భగవతి శరణం - దేవన్ శరణం దేవి శరణం' }
+        ]
+      },
+      {
+        id: 'song-3',
+        order: 3,
+        title: 'భగవాన్ శరణం భగవతి శరణం',
+        lines: [
+          { role: 'singer', text: 'భగవాన్ శరణం భగవతి శరణం' },
+          { role: 'cosinger', text: 'శరణం శరణం అయ్యప్ప' },
+          { role: 'gap', text: '' },
+          { role: 'singer', text: 'దేవన్ శరణం దేవి శరణం' },
+          { role: 'cosinger', text: 'శరణం శరణం అయ్యప్ప' },
+          { role: 'both', text: 'స్వామియే శరణం అయ్యప్ప!' }
+        ]
+      },
+      {
+        id: 'song-4',
+        order: 4,
+        title: 'హరివరాసనం విశ్వమోహనం',
+        lines: [
+          { role: 'singer', text: 'హరివరాసనం విశ్వమోహనం హరిదధీశ్వరం ఆరాధ్యపాదుకం' },
+          { role: 'cosinger', text: 'అరివిమర్దనం నిత్యనర్తనం హరిహరాత్మజం దేవమాశ్రయే' },
+          { role: 'gap', text: '' },
+          { role: 'singer', text: 'శరణకీర్తనం శక్తమానసం భరణలోలుపం నర్తనాలసం' },
+          { role: 'cosinger', text: 'అరుణభాసురం భూతనాయకం హరిహరాత్మజం దేవమాశ్రయే' },
+          { role: 'both', text: 'స్వామియే శరణం అయ్యప్ప!' }
+        ]
+      },
+      {
+        id: 'song-5',
+        order: 5,
+        title: 'శ్రీ అయ్యప్ప శరణు ఘోష',
+        lines: [
+          { role: 'singer', text: 'స్వామియే శరణం అయ్యప్ప' },
+          { role: 'cosinger', text: 'హరిహర సుతనే శరణం అయ్యప్ప' },
+          { role: 'singer', text: 'మణికంఠ స్వామియే శరణం అయ్యప్ప' },
+          { role: 'cosinger', text: 'పంబ వాసనే శరణం అయ్యప్ప' },
+          { role: 'both', text: 'స్వామియే శరణం అయ్యప్ప!' }
+        ]
+      }
+    ];
+
+    function getPublicSongsCollection() {
+      return collection(db, 'artifacts', appId, 'public', 'data', 'bhajan_songs');
+    }
+
+    function getPublicSongDoc(songId) {
+      return doc(db, 'artifacts', appId, 'public', 'data', 'bhajan_songs', songId);
+    }
+
+    function loadCachedSongs() {
+      const raw = safeGetStorage(localStorage, CACHE_KEY);
+      if (raw) {
+        try {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed;
+          }
+        } catch (err) {
+          // Ignore invalid JSON
+        }
+      }
+      return DEFAULT_SONGS.map(s => ({ ...s, lines: [...s.lines] }));
+    }
+
+    function saveCachedSongs() {
+      safeSetStorage(localStorage, CACHE_KEY, JSON.stringify(songs));
+    }
+
+    async function seedDefaultSongsToCloud() {
+      if (!isCloudConnected || !currentUser) return;
+      for (const song of DEFAULT_SONGS) {
+        await setDoc(getPublicSongDoc(song.id), {
+          title: song.title,
+          order: song.order,
+          lines: song.lines,
+          updatedAt: Date.now()
+        });
+      }
+    }
+
+    async function upsertSongToCloud(songObj) {
+      saveCachedSongs();
+      if (!isCloudConnected || !currentUser) return;
+      try {
+        await setDoc(getPublicSongDoc(songObj.id), {
+          title: songObj.title,
+          order: typeof songObj.order === 'number' ? songObj.order : Date.now(),
+          lines: songObj.lines,
+          updatedAt: Date.now()
+        });
+      } catch (err) {
+        showToast('క్లౌడ్ సేవ్ లోపం: ఇంటర్నెట్ తనిఖీ చేయండి');
+      }
+    }
+
+    async function removeSongFromCloud(songId) {
+      saveCachedSongs();
+      if (!isCloudConnected || !currentUser) return;
+      try {
+        await deleteDoc(getPublicSongDoc(songId));
+      } catch (err) {
+        showToast('క్లౌడ్ తొలగింపు లోపం');
+      }
+    }
+
+    async function initCloudSync() {
+      if (!hasValidCloudConfig) {
+        updateSyncStatusUI('setup');
+        return;
+      }
+
+      try {
+        const app = initializeApp(rawFirebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          const cred = await signInWithCustomToken(auth, __initial_auth_token);
+          currentUser = cred.user;
+        } else {
+          const cred = await signInAnonymously(auth);
+          currentUser = cred.user;
+        }
+
+        if (!currentUser) return;
+        isCloudConnected = true;
+        updateSyncStatusUI('cloud');
+
+        let seededOnce = false;
+        onSnapshot(
+          getPublicSongsCollection(),
+          async (snapshot) => {
+            if (snapshot.empty && !seededOnce) {
+              seededOnce = true;
+              await seedDefaultSongsToCloud();
+              return;
+            }
+
+            const cloudSongs = [];
+            snapshot.forEach((docSnap) => {
+              const data = docSnap.data();
+              if (data && data.title && Array.isArray(data.lines)) {
+                cloudSongs.push({
+                  id: docSnap.id,
+                  title: data.title,
+                  order: typeof data.order === 'number' ? data.order : 999,
+                  lines: data.lines
+                });
+              }
+            });
+
+            // Sort newest custom songs (negative order) first, then default order
+            cloudSongs.sort((a, b) => a.order - b.order);
+
+            songs = cloudSongs;
+            saveCachedSongs();
+            renderSongList();
+
+            if (activeSongId) {
+              const stillExists = songs.some(s => s.id === activeSongId);
+              if (stillExists) {
+                renderLyricsContent();
+              } else {
+                closeLyricsView();
+              }
+            }
+          },
+          () => {
+            updateSyncStatusUI('offline');
+          }
+        );
+      } catch (err) {
+        updateSyncStatusUI('offline');
+      }
+    }
+
+    // =========================================================================
+    // 3. MODAL DISPLAY HELPERS
+    // =========================================================================
+    function showModal(el, displayType = 'flex') {
+      if (!el) return;
+      el.classList.remove('hidden');
+      el.style.display = displayType;
+    }
+
+    function hideModal(el) {
+      if (!el) return;
+      el.classList.add('hidden');
+      el.style.display = 'none';
+    }
+
+    // =========================================================================
+    // 4. ADMIN AUTHENTICATION
+    // =========================================================================
+    function handleAdminAuthClick() {
+      if (isAdmin) {
+        isAdmin = false;
+        safeRemoveStorage(sessionStorage, ADMIN_SESSION_KEY);
+        updateAdminUI();
+        renderSongList();
+        showToast('అడ్మిన్ లాగౌట్ పూర్తయింది');
+      } else {
+        openAdminLoginModal();
+      }
+    }
+
+    function openAdminLoginModal() {
+      const modal = document.getElementById('admin-login-modal');
+      const input = document.getElementById('admin-password-input');
+      const err = document.getElementById('admin-login-error');
+      if (input) input.value = '';
+      if (err) err.classList.add('hidden');
+      showModal(modal, 'flex');
+      setTimeout(() => {
+        if (input) input.focus();
+      }, 60);
+    }
+
+    function closeAdminLoginModal() {
+      hideModal(document.getElementById('admin-login-modal'));
+    }
+
+    function attemptAdminLogin() {
+      const input = document.getElementById('admin-password-input');
+      const err = document.getElementById('admin-login-error');
+      const entered = (input ? input.value : '').trim();
+
+      if (entered === ADMIN_PIN) {
+        isAdmin = true;
+        safeSetStorage(sessionStorage, ADMIN_SESSION_KEY, 'true');
+        closeAdminLoginModal();
+        updateAdminUI();
+        renderSongList();
+        showToast('అడ్మిన్ లాగిన్ విజయవంతమైంది');
+      } else {
+        if (err) err.classList.remove('hidden');
+        if (input) {
+          input.value = '';
+          input.focus();
+        }
+      }
+    }
+
+    function updateAdminUI() {
+      const authLabel = document.getElementById('admin-auth-label');
+      const authBtn = document.getElementById('btn-admin-auth');
+      const toolbar = document.getElementById('admin-toolbar');
+      const lyricsAdminActions = document.getElementById('lyrics-admin-actions');
+
+      if (authLabel) {
+        authLabel.textContent = isAdmin ? 'లాగౌట్' : 'అడ్మిన్';
+      }
+      if (authBtn) {
+        if (isAdmin) {
+          authBtn.classList.remove('bg-amber-400', 'text-maroon-950', 'hover:bg-amber-300');
+          authBtn.classList.add('bg-emerald-500', 'text-white', 'hover:bg-emerald-400');
+        } else {
+          authBtn.classList.add('bg-amber-400', 'text-maroon-950', 'hover:bg-amber-300');
+          authBtn.classList.remove('bg-emerald-500', 'text-white', 'hover:bg-emerald-400');
+        }
+      }
+      if (toolbar) {
+        toolbar.classList.toggle('hidden', !isAdmin);
+      }
+      if (lyricsAdminActions) {
+        lyricsAdminActions.classList.toggle('hidden', !isAdmin);
+      }
+    }
+
+    // =========================================================================
+    // 5. TELUGU-TO-ENGLISH PHONETIC SEARCH & SONGS LIST RENDERING
+    // =========================================================================
+    const TELUGU_TO_ENG_MAP = {
+      'అ': 'a', 'ఆ': 'aa', 'ఇ': 'i', 'ఈ': 'ee', 'ఉ': 'u', 'ఊ': 'oo',
+      'ఋ': 'ru', 'ఎ': 'e', 'ఏ': 'e', 'ఐ': 'ai', 'ఒ': 'o', 'ఓ': 'o', 'ఔ': 'au',
+      'క': 'k', 'ఖ': 'kh', 'గ': 'g', 'ఘ': 'gh', 'ఙ': 'ng',
+      'చ': 'ch', 'ఛ': 'chh', 'జ': 'j', 'ఝ': 'jh', 'ఞ': 'ny',
+      'ట': 't', 'ఠ': 'th', 'డ': 'd', 'ఢ': 'dh', 'ణ': 'n',
+      'త': 't', 'థ': 'th', 'ద': 'd', 'ధ': 'dh', 'న': 'n',
+      'ప': 'p', 'ఫ': 'ph', 'బ': 'b', 'భ': 'bh', 'మ': 'm',
+      'య': 'y', 'ర': 'r', 'ల': 'l', 'వ': 'v', 'శ': 'sh', 'ష': 'sh', 'స': 's', 'హ': 'h',
+      'ళ': 'l', 'క్ష': 'ksh', 'ఱ': 'r',
+      'ా': 'aa', 'ి': 'i', 'ీ': 'ee', 'ు': 'u', 'ూ': 'oo', 'ృ': 'ru',
+      'ె': 'e', 'ే': 'e', 'ై': 'ai', 'ొ': 'o', 'ో': 'o', 'ౌ': 'au',
+      'ం': 'm', 'ః': 'h', '్': ''
+    };
+
+    const TELUGU_CONSONANTS = new Set([
+      'క','ఖ','గ','ఘ','ఙ','చ','ఛ','జ','ఝ','ఞ','ట','ఠ','డ','ఢ','ణ',
+      'త','థ','ద','ధ','న','ప','ఫ','బ','భ','మ','య','ర','ల','వ','శ','ష','స','హ','ళ','ఱ'
+    ]);
+
+    const TELUGU_MATRAS = new Set([
+      'ా','ి','ీ','ు','ూ','ృ','ె','ే','ై','ొ','ో','ౌ','్'
+    ]);
+
+    // Converts any Telugu string into phonetic English so English keyboard searches match automatically
+    function teluguToPhoneticEnglish(text) {
+      if (!text) return '';
+      let out = '';
+      const chars = Array.from(text);
+      for (let i = 0; i < chars.length; i++) {
+        const ch = chars[i];
+        const next = chars[i + 1];
+
+        if (ch === 'క' && next === '్' && chars[i + 2] === 'ష') {
+          out += 'ksh';
+          i += 2;
+          if (!TELUGU_MATRAS.has(chars[i + 1])) out += 'a';
+          continue;
+        }
+
+        if (TELUGU_CONSONANTS.has(ch)) {
+          out += TELUGU_TO_ENG_MAP[ch] || '';
+          if (!TELUGU_MATRAS.has(next)) {
+            out += 'a';
+          }
+        } else if (TELUGU_TO_ENG_MAP[ch] !== undefined) {
+          out += TELUGU_TO_ENG_MAP[ch];
+        } else {
+          out += ch.toLowerCase();
+        }
+      }
+      return out;
+    }
+
+    // Normalizes common English spelling variations (aa->a, ee->i, oo->u, ph->f, w->v)
+    function normalizePhonetic(str) {
+      return str
+        .toLowerCase()
+        .replace(/aa/g, 'a')
+        .replace(/ee/g, 'i')
+        .replace(/oo/g, 'u')
+        .replace(/ph/g, 'f')
+        .replace(/w/g, 'v')
+        .replace(/sh/g, 's')
+        .replace(/th/g, 't')
+        .replace(/dh/g, 'd')
+        .replace(/bh/g, 'b')
+        .replace(/kh/g, 'k')
+        .replace(/gh/g, 'g')
+        .replace(/ch/g, 'c')
+        .replace(/[^a-z0-9\u0C00-\u0C7F\s]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function matchesSongQuery(song, rawQuery) {
+      const q = rawQuery.trim().toLowerCase();
+      if (!q) return true;
+
+      // 1. Direct Telugu or exact substring match
+      if (song.title.toLowerCase().includes(q)) return true;
+      if (song.lines.some(l => l.text && l.text.toLowerCase().includes(q))) return true;
+
+      // 2. Phonetic English match against Telugu title & lyrics
+      const normQuery = normalizePhonetic(q);
+      if (!normQuery) return false;
+
+      const phoneticTitle = normalizePhonetic(teluguToPhoneticEnglish(song.title));
+      if (phoneticTitle.includes(normQuery)) return true;
+
+      return song.lines.some(l => {
+        if (!l.text) return false;
+        return normalizePhonetic(teluguToPhoneticEnglish(l.text)).includes(normQuery);
+      });
+    }
+
+    function renderSongList() {
+      const container = document.getElementById('songs-list-container');
+      const countLabel = document.getElementById('songs-count-label');
+      const searchInput = document.getElementById('search-input');
+      const clearBtn = document.getElementById('btn-clear-search');
+
+      const query = (searchInput ? searchInput.value : '').trim();
+      if (clearBtn) {
+        clearBtn.classList.toggle('hidden', query.length === 0);
+      }
+
+      const filtered = query
+        ? songs.filter(song => matchesSongQuery(song, query))
+        : songs;
+
+      if (countLabel) {
+        countLabel.textContent = query
+          ? `${filtered.length} పాటలు లభించాయి`
+          : `${songs.length} భజన పాటలు`;
+      }
+
+      if (!container) return;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 px-4 rounded-2xl bg-amber-50/70 dark:bg-stone-900/60 border border-amber-200/60 dark:border-stone-800">
+            <p class="text-sm font-bold text-stone-700 dark:text-stone-300">పాటలు ఏవీ కనిపించలేదు</p>
+            <p class="text-xs text-stone-500 dark:text-stone-400 mt-1">వేరే పదంతో వెతకండి లేదా కొత్త పాట చేర్చండి.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map((song, idx) => `
+        <div class="flex items-center justify-between gap-2 bg-white dark:bg-[#19120E] hover:bg-amber-50/80 dark:hover:bg-stone-800/70 border border-amber-200/70 dark:border-amber-900/40 rounded-2xl px-4 py-3.5 shadow-sm transition">
+          <button type="button" data-action="open-song" data-id="${escapeHtml(song.id)}"
+            class="flex-1 flex items-center gap-3 text-left min-w-0 py-0.5 active:scale-[0.99] transition">
+            <span class="w-7 h-7 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-maroon-900 dark:text-amber-300 text-xs font-extrabold flex items-center justify-center shrink-0">
+              ${idx + 1}
+            </span>
+            <span class="text-[15px] font-bold text-stone-900 dark:text-amber-50 leading-snug truncate">
+              ${escapeHtml(song.title)}
+            </span>
+          </button>
+
+          ${isAdmin ? `
+            <div class="flex items-center gap-1 shrink-0">
+              <button type="button" data-action="edit-song" data-id="${escapeHtml(song.id)}" aria-label="పాట మార్చండి"
+                class="p-2 rounded-xl bg-amber-100/90 dark:bg-amber-900/50 text-maroon-900 dark:text-amber-200 hover:bg-amber-200 transition">
+                <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+              </button>
+              <button type="button" data-action="delete-song" data-id="${escapeHtml(song.id)}" aria-label="పాట తొలగించండి"
+                class="p-2 rounded-xl bg-red-100/90 dark:bg-red-950/60 text-red-700 dark:text-red-400 hover:bg-red-200 transition">
+                <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                </svg>
+              </button>
+            </div>
+          ` : `
+            <button type="button" data-action="open-song" data-id="${escapeHtml(song.id)}" aria-label="లిరిక్స్ చూడండి"
+              class="p-1.5 text-amber-700/70 dark:text-amber-300/70 shrink-0">
+              <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+          `}
+        </div>
+      `).join('');
+    }
+
+    // =========================================================================
+    // 6. LYRICS READER VIEW & ROLE TOGGLE
+    // =========================================================================
+    function openLyricsView(songId) {
+      const song = songs.find(s => s.id === songId);
+      if (!song) return;
+
+      activeSongId = songId;
+      activeRole = 'singer';
+
+      document.getElementById('home-view').classList.add('hidden');
+      document.getElementById('lyrics-view').classList.remove('hidden');
+      document.getElementById('lyrics-admin-actions').classList.toggle('hidden', !isAdmin);
+
+      updateRoleToggleUI();
+      renderLyricsContent();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    function closeLyricsView() {
+      activeSongId = null;
+      document.getElementById('lyrics-view').classList.add('hidden');
+      document.getElementById('home-view').classList.remove('hidden');
+      renderSongList();
+    }
+
+    function setActiveRole(role) {
+      if (activeRole === role) return;
+      activeRole = role;
+      updateRoleToggleUI();
+      renderLyricsContent();
+    }
+
+    function updateRoleToggleUI() {
+      const slider = document.getElementById('role-pill-slider');
+      const singerBtn = document.getElementById('btn-role-singer');
+      const cosingerBtn = document.getElementById('btn-role-cosinger');
+
+      if (activeRole === 'singer') {
+        slider.style.width = '74px';
+        slider.style.transform = 'translateX(0px)';
+        singerBtn.classList.replace('text-stone-700', 'text-white');
+        singerBtn.classList.remove('dark:text-stone-300');
+        cosingerBtn.classList.replace('text-white', 'text-stone-700');
+        cosingerBtn.classList.add('dark:text-stone-300');
+      } else {
+        slider.style.width = '92px';
+        slider.style.transform = 'translateX(74px)';
+        cosingerBtn.classList.replace('text-stone-700', 'text-white');
+        cosingerBtn.classList.remove('dark:text-stone-300');
+        singerBtn.classList.replace('text-white', 'text-stone-700');
+        singerBtn.classList.add('dark:text-stone-300');
+      }
+    }
+
+    function renderLyricsContent() {
+      const song = songs.find(s => s.id === activeSongId);
+      if (!song) return;
+
+      const container = document.getElementById('lyrics-container');
+      const activeSizeRem = (1.15 * fontScale).toFixed(3);
+      const secondarySizeRem = (0.94 * fontScale).toFixed(3);
+
+      container.innerHTML = song.lines.map(line => {
+        if (line.role === 'gap') {
+          return `<div aria-hidden="true" class="h-5"></div>`;
+        }
+
+        const isBoth = line.role === 'both';
+        const isPrimary = isBoth || line.role === activeRole;
+
+        if (isBoth) {
+          return `
+            <p style="font-size: ${activeSizeRem}rem; line-height: 1.75;"
+               class="lyric-line font-bold text-maroon-900 dark:text-amber-300 pt-1 pb-1">
+              ${escapeHtml(line.text)}
+            </p>
+          `;
+        }
+
+        if (isPrimary) {
+          return `
+            <p style="font-size: ${activeSizeRem}rem; line-height: 1.75;"
+               class="lyric-line font-bold text-stone-950 dark:text-amber-50">
+              ${escapeHtml(line.text)}
+            </p>
+          `;
+        } else {
+          return `
+            <p style="font-size: ${secondarySizeRem}rem; line-height: 1.7;"
+               class="lyric-line font-normal text-stone-700 dark:text-stone-300 opacity-70">
+              ${escapeHtml(line.text)}
+            </p>
+          `;
+        }
+      }).join('');
+    }
+
+    function changeFontSize(delta) {
+      fontScale = Math.max(0.8, Math.min(1.45, +(fontScale + delta * 0.1).toFixed(2)));
+      renderLyricsContent();
+    }
+
+    // =========================================================================
+    // 7. ADMIN ADD / EDIT / DELETE SONG EDITOR
+    // =========================================================================
+    function openSongEditorModal(songId = null) {
+      if (!isAdmin) return;
+
+      const modal = document.getElementById('song-editor-modal');
+      const titleHeading = document.getElementById('editor-modal-title');
+      const idInput = document.getElementById('edit-song-id');
+      const titleInput = document.getElementById('edit-song-title');
+      const linesList = document.getElementById('editor-lines-list');
+
+      linesList.innerHTML = '';
+      switchEditorTab('lines', false);
+
+      if (songId) {
+        const song = songs.find(s => s.id === songId);
+        if (!song) return;
+        titleHeading.textContent = 'భజన పాట మార్చండి';
+        idInput.value = song.id;
+        titleInput.value = song.title;
+        song.lines.forEach(line => addEditorLine(line.role, line.text));
+      } else {
+        titleHeading.textContent = 'కొత్త భజన పాట చేర్చు';
+        idInput.value = '';
+        titleInput.value = '';
+        addEditorLine('singer', '');
+        addEditorLine('cosinger', '');
+      }
+
+      showModal(modal, 'flex');
+    }
+
+    function closeSongEditorModal() {
+      hideModal(document.getElementById('song-editor-modal'));
+    }
+
+    function switchEditorTab(tab, syncData = true) {
+      currentEditorTab = tab;
+      const linesTabBtn = document.getElementById('tab-line-editor');
+      const bulkTabBtn = document.getElementById('tab-bulk-editor');
+      const linesPanel = document.getElementById('editor-lines-panel');
+      const bulkPanel = document.getElementById('editor-bulk-panel');
+
+      if (tab === 'lines') {
+        if (syncData && !bulkPanel.classList.contains('hidden')) {
+          const parsedLines = parseBulkTextToLines(document.getElementById('bulk-lyrics-textarea').value);
+          const list = document.getElementById('editor-lines-list');
+          list.innerHTML = '';
+          if (parsedLines.length > 0) {
+            parsedLines.forEach(l => addEditorLine(l.role, l.text));
+          } else {
+            addEditorLine('singer', '');
+          }
+        }
+
+        linesTabBtn.classList.add('bg-white', 'dark:bg-stone-700', 'text-maroon-900', 'dark:text-amber-200', 'shadow-sm');
+        linesTabBtn.classList.remove('text-stone-600', 'dark:text-stone-400');
+        bulkTabBtn.classList.remove('bg-white', 'dark:bg-stone-700', 'text-maroon-900', 'dark:text-amber-200', 'shadow-sm');
+        bulkTabBtn.classList.add('text-stone-600', 'dark:text-stone-400');
+
+        linesPanel.classList.remove('hidden');
+        bulkPanel.classList.add('hidden');
+      } else {
+        if (syncData) {
+          const currentLines = collectLinesFromLineEditor();
+          const bulkText = currentLines.map(l => {
+            if (l.role === 'gap') return '';
+            const prefix = l.role === 'cosinger' ? 'C:' : (l.role === 'both' ? 'B:' : 'S:');
+            return `${prefix} ${l.text}`;
+          }).join('\n');
+          document.getElementById('bulk-lyrics-textarea').value = bulkText;
+        }
+
+        bulkTabBtn.classList.add('bg-white', 'dark:bg-stone-700', 'text-maroon-900', 'dark:text-amber-200', 'shadow-sm');
+        bulkTabBtn.classList.remove('text-stone-600', 'dark:text-stone-400');
+        linesTabBtn.classList.remove('bg-white', 'dark:bg-stone-700', 'text-maroon-900', 'dark:text-amber-200', 'shadow-sm');
+        linesTabBtn.classList.add('text-stone-600', 'dark:text-stone-400');
+
+        bulkPanel.classList.remove('hidden');
+        linesPanel.classList.add('hidden');
+      }
+    }
+
+    function addEditorLine(role = 'singer', text = '') {
+      const list = document.getElementById('editor-lines-list');
+      const row = document.createElement('div');
+      row.className = 'editor-line-row flex items-center gap-2 bg-white dark:bg-stone-800 p-2 rounded-xl border border-stone-200 dark:border-stone-700 shadow-sm';
+
+      const isGap = role === 'gap';
+
+      row.innerHTML = `
+        <select class="line-role-select px-2 py-2 rounded-lg text-xs font-bold bg-amber-50 dark:bg-stone-700 text-maroon-900 dark:text-amber-200 border border-amber-200 dark:border-stone-600 focus:outline-none shrink-0">
+          <option value="singer" ${role === 'singer' ? 'selected' : ''}>గాయకుడు</option>
+          <option value="cosinger" ${role === 'cosinger' ? 'selected' : ''}>సహ గాయకుడు</option>
+          <option value="both" ${role === 'both' ? 'selected' : ''}>అందరూ</option>
+          <option value="gap" ${role === 'gap' ? 'selected' : ''}>చరణం ఖాళీ</option>
+        </select>
+        <input type="text" value="${isGap ? '' : escapeHtml(text)}"
+          placeholder="${isGap ? 'చరణాల మధ్య ఖాళీ (Gap)' : 'సాహిత్యం పంక్తి రాయండి...'}"
+          ${isGap ? 'disabled' : ''}
+          class="line-text-input flex-1 min-w-0 px-2.5 py-2 rounded-lg ${isGap ? 'bg-stone-100 dark:bg-stone-800/60 text-stone-400 italic' : 'bg-stone-50 dark:bg-stone-900 text-stone-900 dark:text-white'} text-sm focus:outline-none focus:ring-1 focus:ring-saffron-500" />
+        <button type="button" data-action="remove-line" aria-label="పంక్తి తొలగించండి"
+          class="p-2 text-stone-400 hover:text-red-500 transition shrink-0">
+          <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      `;
+
+      list.appendChild(row);
+    }
+
+    function collectLinesFromLineEditor() {
+      const rows = document.querySelectorAll('#editor-lines-list .editor-line-row');
+      const result = [];
+      rows.forEach(row => {
+        const role = row.querySelector('.line-role-select').value;
+        if (role === 'gap') {
+          result.push({ role: 'gap', text: '' });
+          return;
+        }
+        const text = row.querySelector('.line-text-input').value.trim();
+        if (text) {
+          result.push({ role, text });
+        }
+      });
+      return result.filter((item, idx, arr) => {
+        if (item.role !== 'gap') return true;
+        if (idx === 0 || idx === arr.length - 1) return false;
+        return arr[idx - 1].role !== 'gap';
+      });
+    }
+
+    function parseBulkTextToLines(rawText) {
+      const rawLines = rawText.split('\n').map(line => line.trim());
+      const parsed = [];
+
+      rawLines.forEach(line => {
+        if (!line || /^g\s*:?$/i.test(line)) {
+          parsed.push({ role: 'gap', text: '' });
+        } else if (/^c\s*:/i.test(line)) {
+          const text = line.replace(/^c\s*:\s*/i, '').trim();
+          if (text) parsed.push({ role: 'cosinger', text });
+        } else if (/^b\s*:/i.test(line)) {
+          const text = line.replace(/^b\s*:\s*/i, '').trim();
+          if (text) parsed.push({ role: 'both', text });
+        } else if (/^s\s*:/i.test(line)) {
+          const text = line.replace(/^s\s*:\s*/i, '').trim();
+          if (text) parsed.push({ role: 'singer', text });
+        } else {
+          parsed.push({ role: 'singer', text: line });
+        }
+      });
+      return parsed;
+    }
+
+    async function saveSongFromEditor() {
+      const id = document.getElementById('edit-song-id').value;
+      const title = document.getElementById('edit-song-title').value.trim();
+
+      if (!title) {
+        showToast('దయచేసి పాట పేరు రాయండి');
+        document.getElementById('edit-song-title').focus();
+        return;
+      }
+
+      const lines = currentEditorTab === 'bulk'
+        ? parseBulkTextToLines(document.getElementById('bulk-lyrics-textarea').value)
+        : collectLinesFromLineEditor();
+
+      const hasLyricLines = lines.some(l => l.role !== 'gap' && l.text.trim().length > 0);
+      if (!hasLyricLines) {
+        showToast('కనీసం ఒక పంక్తి సాహిత్యం చేర్చండి');
+        return;
+      }
+
+      let savedSongObj = null;
+
+      if (id) {
+        const index = songs.findIndex(s => s.id === id);
+        if (index !== -1) {
+          savedSongObj = { ...songs[index], title, lines };
+          songs[index] = savedSongObj;
+        }
+        showToast('భజన పాట మార్చబడింది');
+      } else {
+        savedSongObj = {
+          id: 'song-' + Date.now(),
+          order: -Date.now(),
+          title,
+          lines
+        };
+        songs.unshift(savedSongObj);
+        showToast('కొత్త భజన పాట జాబితాలో చేర్చబడింది');
+      }
+
+      closeSongEditorModal();
+      renderSongList();
+
+      if (activeSongId && activeSongId === id) {
+        renderLyricsContent();
+      }
+
+      if (savedSongObj) {
+        await upsertSongToCloud(savedSongObj);
+      }
+    }
+
+    function openDeleteModal(songId) {
+      if (!isAdmin) return;
+      const song = songs.find(s => s.id === songId);
+      if (!song) return;
+
+      songIdPendingDelete = songId;
+      document.getElementById('delete-song-name-label').textContent = `"${song.title}" పాటను శాశ్వతంగా తొలగించాలా?`;
+      showModal(document.getElementById('delete-confirm-modal'), 'flex');
+    }
+
+    function closeDeleteModal() {
+      songIdPendingDelete = null;
+      hideModal(document.getElementById('delete-confirm-modal'));
+    }
+
+    async function confirmDeleteSong() {
+      if (!songIdPendingDelete) return;
+      const deletedId = songIdPendingDelete;
+      songs = songs.filter(s => s.id !== deletedId);
+      closeDeleteModal();
+
+      if (activeSongId === deletedId) {
+        closeLyricsView();
+      } else {
+        renderSongList();
+      }
+      showToast('పాట తొలగించబడింది');
+      await removeSongFromCloud(deletedId);
+    }
+
+    // =========================================================================
+    // 8. UTILITIES & DARK MODE
+    // =========================================================================
+    function toggleDarkMode() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      safeSetStorage(localStorage, THEME_KEY, isDark ? 'dark' : 'light');
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function showToast(msg) {
+      const banner = document.getElementById('toast-banner');
+      document.getElementById('toast-message').textContent = msg;
+      banner.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        banner.classList.add('hidden');
+      }, 2600);
+    }
+
+    // =========================================================================
+    // 9. EVENT WIRING & INITIALIZATION
+    // =========================================================================
+    function bindEvents() {
+      // Theme buttons
+      document.getElementById('btn-theme-toggle').addEventListener('click', toggleDarkMode);
+      document.getElementById('btn-theme-toggle-lyrics').addEventListener('click', toggleDarkMode);
+
+      // Admin Auth buttons
+      document.getElementById('btn-admin-auth').addEventListener('click', handleAdminAuthClick);
+      document.getElementById('btn-close-login').addEventListener('click', closeAdminLoginModal);
+      document.getElementById('btn-cancel-login').addEventListener('click', closeAdminLoginModal);
+      document.getElementById('btn-submit-login').addEventListener('click', attemptAdminLogin);
+
+      document.getElementById('admin-password-input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          attemptAdminLogin();
+        }
+      });
+
+      // Close login modal on backdrop click
+      document.getElementById('admin-login-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'admin-login-modal') closeAdminLoginModal();
+      });
+
+      // Search controls
+      document.getElementById('search-input').addEventListener('input', renderSongList);
+      document.getElementById('btn-clear-search').addEventListener('click', () => {
+        const input = document.getElementById('search-input');
+        input.value = '';
+        renderSongList();
+        input.focus();
+      });
+
+      // Admin toolbar actions
+      document.getElementById('btn-add-new-song').addEventListener('click', () => openSongEditorModal(null));
+      document.getElementById('btn-reset-songs').addEventListener('click', async () => {
+        if (!isAdmin) return;
+        const currentIds = songs.map(s => s.id);
+        songs = DEFAULT_SONGS.map(s => ({ ...s, lines: [...s.lines] }));
+        saveCachedSongs();
+        renderSongList();
+        showToast('అన్ని తెలుగు భజన పాటలు పునరుద్ధరించబడ్డాయి');
+
+        if (isCloudConnected && currentUser) {
+          for (const oldId of currentIds) {
+            await removeSongFromCloud(oldId);
+          }
+          await seedDefaultSongsToCloud();
+        }
+      });
+
+      // Delegated clicks on Song List items
+      document.getElementById('songs-list-container').addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        const action = btn.getAttribute('data-action');
+        const id = btn.getAttribute('data-id');
+        if (action === 'open-song') openLyricsView(id);
+        if (action === 'edit-song') openSongEditorModal(id);
+        if (action === 'delete-song') openDeleteModal(id);
+      });
+
+      // Lyrics view navigation & toggles
+      document.getElementById('btn-back-to-list').addEventListener('click', closeLyricsView);
+      document.getElementById('btn-role-singer').addEventListener('click', () => setActiveRole('singer'));
+      document.getElementById('btn-role-cosinger').addEventListener('click', () => setActiveRole('cosinger'));
+      document.getElementById('btn-font-down').addEventListener('click', () => changeFontSize(-1));
+      document.getElementById('btn-font-up').addEventListener('click', () => changeFontSize(1));
+      document.getElementById('btn-lyrics-edit').addEventListener('click', () => {
+        if (activeSongId) openSongEditorModal(activeSongId);
+      });
+      document.getElementById('btn-lyrics-delete').addEventListener('click', () => {
+        if (activeSongId) openDeleteModal(activeSongId);
+      });
+
+      // Song Editor Modal controls
+      document.getElementById('btn-close-editor').addEventListener('click', closeSongEditorModal);
+      document.getElementById('btn-cancel-editor').addEventListener('click', closeSongEditorModal);
+      document.getElementById('btn-save-song').addEventListener('click', saveSongFromEditor);
+      document.getElementById('tab-line-editor').addEventListener('click', () => switchEditorTab('lines', true));
+      document.getElementById('tab-bulk-editor').addEventListener('click', () => switchEditorTab('bulk', true));
+
+      document.getElementById('btn-add-line-singer').addEventListener('click', () => addEditorLine('singer', ''));
+      document.getElementById('btn-add-line-cosinger').addEventListener('click', () => addEditorLine('cosinger', ''));
+      document.getElementById('btn-add-line-both').addEventListener('click', () => addEditorLine('both', ''));
+      document.getElementById('btn-add-line-gap').addEventListener('click', () => addEditorLine('gap', ''));
+
+      // Delegated events inside Line Editor rows
+      document.getElementById('editor-lines-list').addEventListener('click', (e) => {
+        const removeBtn = e.target.closest('button[data-action="remove-line"]');
+        if (removeBtn) {
+          removeBtn.closest('.editor-line-row').remove();
+        }
+      });
+
+      document.getElementById('editor-lines-list').addEventListener('change', (e) => {
+        if (!e.target.classList.contains('line-role-select')) return;
+        const row = e.target.closest('.editor-line-row');
+        const input = row.querySelector('.line-text-input');
+        if (e.target.value === 'gap') {
+          input.value = '';
+          input.disabled = true;
+          input.placeholder = 'చరణాల మధ్య ఖాళీ (Gap)';
+          input.className = 'line-text-input flex-1 min-w-0 px-2.5 py-2 rounded-lg bg-stone-100 dark:bg-stone-800/60 text-stone-400 italic text-sm focus:outline-none';
+        } else {
+          input.disabled = false;
+          input.placeholder = 'సాహిత్యం పంక్తి రాయండి...';
+          input.className = 'line-text-input flex-1 min-w-0 px-2.5 py-2 rounded-lg bg-stone-50 dark:bg-stone-900 text-stone-900 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-saffron-500';
+        }
+      });
+
+      // Delete Confirmation Modal controls
+      document.getElementById('btn-cancel-delete').addEventListener('click', closeDeleteModal);
+      document.getElementById('btn-confirm-delete').addEventListener('click', confirmDeleteSong);
+      document.getElementById('delete-confirm-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'delete-confirm-modal') closeDeleteModal();
+      });
+    }
+
+    function initApp() {
+      const savedTheme = safeGetStorage(localStorage, THEME_KEY);
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+      }
+
+      isAdmin = safeGetStorage(sessionStorage, ADMIN_SESSION_KEY) === 'true';
+      songs = loadCachedSongs();
+
+      bindEvents();
+      updateAdminUI();
+      renderSongList();
+      initCloudSync();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
+  </script>
+</body>
+</html>
+            </span>
+            <span class="text-[15px] font-bold text-stone-900 dark:text-amber-50 leading-snug truncate">
+              ${escapeHtml(song.title)}
+            </span>
+          </button>
+
+          ${isAdmin ? `
+            <div class="flex items-center gap-1 shrink-0">
+              <button type="button" data-action="edit-song" data-id="${escapeHtml(song.id)}" aria-label="పాట మార్చండి"
+                class="p-2 rounded-xl bg-amber-100/90 dark:bg-amber-900/50 text-maroon-900 dark:text-amber-200 hover:bg-amber-200 transition">
+                <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+              </button>
+              <button type="button" data-action="delete-song" data-id="${escapeHtml(song.id)}" aria-label="పాట తొలగించండి"
+                class="p-2 rounded-xl bg-red-100/90 dark:bg-red-950/60 text-red-700 dark:text-red-400 hover:bg-red-200 transition">
+                <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                </svg>
+              </button>
+            </div>
+          ` : `
+            <button type="button" data-action="open-song" data-id="${escapeHtml(song.id)}" aria-label="లిరిక్స్ చూడండి"
+              class="p-1.5 text-amber-700/70 dark:text-amber-300/70 shrink-0">
+              <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+          `}
+        </div>
+      `).join('');
+    }
+
+    // =========================================================================
+    // 6. LYRICS READER VIEW & ROLE TOGGLE
+    // =========================================================================
+    function openLyricsView(songId) {
+      const song = songs.find(s => s.id === songId);
+      if (!song) return;
+
+      activeSongId = songId;
+      activeRole = 'singer';
+
+      document.getElementById('home-view').classList.add('hidden');
+      document.getElementById('lyrics-view').classList.remove('hidden');
+      document.getElementById('lyrics-admin-actions').classList.toggle('hidden', !isAdmin);
+
+      updateRoleToggleUI();
+      renderLyricsContent();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    function closeLyricsView() {
+      activeSongId = null;
+      document.getElementById('lyrics-view').classList.add('hidden');
+      document.getElementById('home-view').classList.remove('hidden');
+      renderSongList();
+    }
+
+    function setActiveRole(role) {
+      if (activeRole === role) return;
+      activeRole = role;
+      updateRoleToggleUI();
+      renderLyricsContent();
+    }
+
+    function updateRoleToggleUI() {
+      const slider = document.getElementById('role-pill-slider');
+      const singerBtn = document.getElementById('btn-role-singer');
+      const cosingerBtn = document.getElementById('btn-role-cosinger');
+
+      if (activeRole === 'singer') {
+        slider.style.width = '74px';
+        slider.style.transform = 'translateX(0px)';
+        singerBtn.classList.replace('text-stone-700', 'text-white');
+        singerBtn.classList.remove('dark:text-stone-300');
+        cosingerBtn.classList.replace('text-white', 'text-stone-700');
+        cosingerBtn.classList.add('dark:text-stone-300');
+      } else {
+        slider.style.width = '92px';
+        slider.style.transform = 'translateX(74px)';
+        cosingerBtn.classList.replace('text-stone-700', 'text-white');
+        cosingerBtn.classList.remove('dark:text-stone-300');
+        singerBtn.classList.replace('text-white', 'text-stone-700');
+        singerBtn.classList.add('dark:text-stone-300');
+      }
+    }
+
+    function renderLyricsContent() {
+      const song = songs.find(s => s.id === activeSongId);
+      if (!song) return;
+
+      const container = document.getElementById('lyrics-container');
+      const activeSizeRem = (1.15 * fontScale).toFixed(3);
+      const secondarySizeRem = (0.94 * fontScale).toFixed(3);
+
+      container.innerHTML = song.lines.map(line => {
+        if (line.role === 'gap') {
+          return `<div aria-hidden="true" class="h-5"></div>`;
+        }
+
+        const isBoth = line.role === 'both';
+        const isPrimary = isBoth || line.role === activeRole;
+
+        if (isBoth) {
+          return `
+            <p style="font-size: ${activeSizeRem}rem; line-height: 1.75;"
+               class="lyric-line font-bold text-maroon-900 dark:text-amber-300 pt-1 pb-1">
+              ${escapeHtml(line.text)}
+            </p>
+          `;
+        }
+
+        if (isPrimary) {
+          return `
+            <p style="font-size: ${activeSizeRem}rem; line-height: 1.75;"
+               class="lyric-line font-bold text-stone-950 dark:text-amber-50">
+              ${escapeHtml(line.text)}
+            </p>
+          `;
+        } else {
+          return `
+            <p style="font-size: ${secondarySizeRem}rem; line-height: 1.7;"
+               class="lyric-line font-normal text-stone-700 dark:text-stone-300 opacity-70">
+              ${escapeHtml(line.text)}
+            </p>
+          `;
+        }
+      }).join('');
+    }
+
+    function changeFontSize(delta) {
+      fontScale = Math.max(0.8, Math.min(1.45, +(fontScale + delta * 0.1).toFixed(2)));
+      renderLyricsContent();
+    }
+
+    // =========================================================================
+    // 7. ADMIN ADD / EDIT / DELETE SONG EDITOR
+    // =========================================================================
+    function openSongEditorModal(songId = null) {
+      if (!isAdmin) return;
+
+      const modal = document.getElementById('song-editor-modal');
+      const titleHeading = document.getElementById('editor-modal-title');
+      const idInput = document.getElementById('edit-song-id');
+      const titleInput = document.getElementById('edit-song-title');
+      const linesList = document.getElementById('editor-lines-list');
+
+      linesList.innerHTML = '';
+      switchEditorTab('lines', false);
+
+      if (songId) {
+        const song = songs.find(s => s.id === songId);
+        if (!song) return;
+        titleHeading.textContent = 'భజన పాట మార్చండి';
+        idInput.value = song.id;
+        titleInput.value = song.title;
+        song.lines.forEach(line => addEditorLine(line.role, line.text));
+      } else {
+        titleHeading.textContent = 'కొత్త భజన పాట చేర్చు';
+        idInput.value = '';
+        titleInput.value = '';
+        addEditorLine('singer', '');
+        addEditorLine('cosinger', '');
+      }
+
+      showModal(modal, 'flex');
+    }
+
+    function closeSongEditorModal() {
+      hideModal(document.getElementById('song-editor-modal'));
+    }
+
+    function switchEditorTab(tab, syncData = true) {
+      currentEditorTab = tab;
+      const linesTabBtn = document.getElementById('tab-line-editor');
+      const bulkTabBtn = document.getElementById('tab-bulk-editor');
+      const linesPanel = document.getElementById('editor-lines-panel');
+      const bulkPanel = document.getElementById('editor-bulk-panel');
+
+      if (tab === 'lines') {
+        if (syncData && !bulkPanel.classList.contains('hidden')) {
+          const parsedLines = parseBulkTextToLines(document.getElementById('bulk-lyrics-textarea').value);
+          const list = document.getElementById('editor-lines-list');
+          list.innerHTML = '';
+          if (parsedLines.length > 0) {
+            parsedLines.forEach(l => addEditorLine(l.role, l.text));
+          } else {
+            addEditorLine('singer', '');
+          }
+        }
+
+        linesTabBtn.classList.add('bg-white', 'dark:bg-stone-700', 'text-maroon-900', 'dark:text-amber-200', 'shadow-sm');
+        linesTabBtn.classList.remove('text-stone-600', 'dark:text-stone-400');
+        bulkTabBtn.classList.remove('bg-white', 'dark:bg-stone-700', 'text-maroon-900', 'dark:text-amber-200', 'shadow-sm');
+        bulkTabBtn.classList.add('text-stone-600', 'dark:text-stone-400');
+
+        linesPanel.classList.remove('hidden');
+        bulkPanel.classList.add('hidden');
+      } else {
+        if (syncData) {
+          const currentLines = collectLinesFromLineEditor();
+          const bulkText = currentLines.map(l => {
+            if (l.role === 'gap') return '';
+            const prefix = l.role === 'cosinger' ? 'C:' : (l.role === 'both' ? 'B:' : 'S:');
+            return `${prefix} ${l.text}`;
+          }).join('\n');
+          document.getElementById('bulk-lyrics-textarea').value = bulkText;
+        }
+
+        bulkTabBtn.classList.add('bg-white', 'dark:bg-stone-700', 'text-maroon-900', 'dark:text-amber-200', 'shadow-sm');
+        bulkTabBtn.classList.remove('text-stone-600', 'dark:text-stone-400');
+        linesTabBtn.classList.remove('bg-white', 'dark:bg-stone-700', 'text-maroon-900', 'dark:text-amber-200', 'shadow-sm');
+        linesTabBtn.classList.add('text-stone-600', 'dark:text-stone-400');
+
+        bulkPanel.classList.remove('hidden');
+        linesPanel.classList.add('hidden');
+      }
+    }
+
+    function addEditorLine(role = 'singer', text = '') {
+      const list = document.getElementById('editor-lines-list');
+      const row = document.createElement('div');
+      row.className = 'editor-line-row flex items-center gap-2 bg-white dark:bg-stone-800 p-2 rounded-xl border border-stone-200 dark:border-stone-700 shadow-sm';
+
+      const isGap = role === 'gap';
+
+      row.innerHTML = `
+        <select class="line-role-select px-2 py-2 rounded-lg text-xs font-bold bg-amber-50 dark:bg-stone-700 text-maroon-900 dark:text-amber-200 border border-amber-200 dark:border-stone-600 focus:outline-none shrink-0">
+          <option value="singer" ${role === 'singer' ? 'selected' : ''}>గాయకుడు</option>
+          <option value="cosinger" ${role === 'cosinger' ? 'selected' : ''}>సహ గాయకుడు</option>
+          <option value="both" ${role === 'both' ? 'selected' : ''}>అందరూ</option>
+          <option value="gap" ${role === 'gap' ? 'selected' : ''}>చరణం ఖాళీ</option>
+        </select>
+        <input type="text" value="${isGap ? '' : escapeHtml(text)}"
+          placeholder="${isGap ? 'చరణాల మధ్య ఖాళీ (Gap)' : 'సాహిత్యం పంక్తి రాయండి...'}"
+          ${isGap ? 'disabled' : ''}
+          class="line-text-input flex-1 min-w-0 px-2.5 py-2 rounded-lg ${isGap ? 'bg-stone-100 dark:bg-stone-800/60 text-stone-400 italic' : 'bg-stone-50 dark:bg-stone-900 text-stone-900 dark:text-white'} text-sm focus:outline-none focus:ring-1 focus:ring-saffron-500" />
+        <button type="button" data-action="remove-line" aria-label="పంక్తి తొలగించండి"
+          class="p-2 text-stone-400 hover:text-red-500 transition shrink-0">
+          <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      `;
+
+      list.appendChild(row);
+    }
+
+    function collectLinesFromLineEditor() {
+      const rows = document.querySelectorAll('#editor-lines-list .editor-line-row');
+      const result = [];
+      rows.forEach(row => {
+        const role = row.querySelector('.line-role-select').value;
+        if (role === 'gap') {
+          result.push({ role: 'gap', text: '' });
+          return;
+        }
+        const text = row.querySelector('.line-text-input').value.trim();
+        if (text) {
+          result.push({ role, text });
+        }
+      });
+      return result.filter((item, idx, arr) => {
+        if (item.role !== 'gap') return true;
+        if (idx === 0 || idx === arr.length - 1) return false;
+        return arr[idx - 1].role !== 'gap';
+      });
+    }
+
+    function parseBulkTextToLines(rawText) {
+      const rawLines = rawText.split('\n').map(line => line.trim());
+      const parsed = [];
+
+      rawLines.forEach(line => {
+        if (!line || /^g\s*:?$/i.test(line)) {
+          parsed.push({ role: 'gap', text: '' });
+        } else if (/^c\s*:/i.test(line)) {
+          const text = line.replace(/^c\s*:\s*/i, '').trim();
+          if (text) parsed.push({ role: 'cosinger', text });
+        } else if (/^b\s*:/i.test(line)) {
+          const text = line.replace(/^b\s*:\s*/i, '').trim();
+          if (text) parsed.push({ role: 'both', text });
+        } else if (/^s\s*:/i.test(line)) {
+          const text = line.replace(/^s\s*:\s*/i, '').trim();
+          if (text) parsed.push({ role: 'singer', text });
+        } else {
+          parsed.push({ role: 'singer', text: line });
+        }
+      });
+      return parsed;
+    }
+
+    async function saveSongFromEditor() {
+      const id = document.getElementById('edit-song-id').value;
+      const title = document.getElementById('edit-song-title').value.trim();
+
+      if (!title) {
+        showToast('దయచేసి పాట పేరు రాయండి');
+        document.getElementById('edit-song-title').focus();
+        return;
+      }
+
+      const lines = currentEditorTab === 'bulk'
+        ? parseBulkTextToLines(document.getElementById('bulk-lyrics-textarea').value)
+        : collectLinesFromLineEditor();
+
+      const hasLyricLines = lines.some(l => l.role !== 'gap' && l.text.trim().length > 0);
+      if (!hasLyricLines) {
+        showToast('కనీసం ఒక పంక్తి సాహిత్యం చేర్చండి');
+        return;
+      }
+
+      let savedSongObj = null;
+
+      if (id) {
+        const index = songs.findIndex(s => s.id === id);
+        if (index !== -1) {
+          savedSongObj = { ...songs[index], title, lines };
+          songs[index] = savedSongObj;
+        }
+        showToast('భజన పాట మార్చబడింది');
+      } else {
+        savedSongObj = {
+          id: 'song-' + Date.now(),
+          order: -Date.now(),
+          title,
+          lines
+        };
+        songs.unshift(savedSongObj);
+        showToast('కొత్త భజన పాట జాబితాలో చేర్చబడింది');
+      }
+
+      closeSongEditorModal();
+      renderSongList();
+
+      if (activeSongId && activeSongId === id) {
+        renderLyricsContent();
+      }
+
+      if (savedSongObj) {
+        await upsertSongToCloud(savedSongObj);
+      }
+    }
+
+    function openDeleteModal(songId) {
+      if (!isAdmin) return;
+      const song = songs.find(s => s.id === songId);
+      if (!song) return;
+
+      songIdPendingDelete = songId;
+      document.getElementById('delete-song-name-label').textContent = `"${song.title}" పాటను శాశ్వతంగా తొలగించాలా?`;
+      showModal(document.getElementById('delete-confirm-modal'), 'flex');
+    }
+
+    function closeDeleteModal() {
+      songIdPendingDelete = null;
+      hideModal(document.getElementById('delete-confirm-modal'));
+    }
+
+    async function confirmDeleteSong() {
+      if (!songIdPendingDelete) return;
+      const deletedId = songIdPendingDelete;
+      songs = songs.filter(s => s.id !== deletedId);
+      closeDeleteModal();
+
+      if (activeSongId === deletedId) {
+        closeLyricsView();
+      } else {
+        renderSongList();
+      }
+      showToast('పాట తొలగించబడింది');
+      await removeSongFromCloud(deletedId);
+    }
+
+    // =========================================================================
+    // 8. UTILITIES & DARK MODE
+    // =========================================================================
+    function toggleDarkMode() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      safeSetStorage(localStorage, THEME_KEY, isDark ? 'dark' : 'light');
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function showToast(msg) {
+      const banner = document.getElementById('toast-banner');
+      document.getElementById('toast-message').textContent = msg;
+      banner.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        banner.classList.add('hidden');
+      }, 2600);
+    }
+
+    // =========================================================================
+    // 9. EVENT WIRING & INITIALIZATION
+    // =========================================================================
+    function bindEvents() {
+      // Theme buttons
+      document.getElementById('btn-theme-toggle').addEventListener('click', toggleDarkMode);
+      document.getElementById('btn-theme-toggle-lyrics').addEventListener('click', toggleDarkMode);
+
+      // Admin Auth buttons
+      document.getElementById('btn-admin-auth').addEventListener('click', handleAdminAuthClick);
+      document.getElementById('btn-close-login').addEventListener('click', closeAdminLoginModal);
+      document.getElementById('btn-cancel-login').addEventListener('click', closeAdminLoginModal);
+      document.getElementById('btn-submit-login').addEventListener('click', attemptAdminLogin);
+
+      document.getElementById('admin-password-input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          attemptAdminLogin();
+        }
+      });
+
+      // Close login modal on backdrop click
+      document.getElementById('admin-login-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'admin-login-modal') closeAdminLoginModal();
+      });
+
+      // Search controls
+      document.getElementById('search-input').addEventListener('input', renderSongList);
+      document.getElementById('btn-clear-search').addEventListener('click', () => {
+        const input = document.getElementById('search-input');
+        input.value = '';
+        renderSongList();
+        input.focus();
+      });
+
+      // Admin toolbar actions
+      document.getElementById('btn-add-new-song').addEventListener('click', () => openSongEditorModal(null));
+      document.getElementById('btn-reset-songs').addEventListener('click', async () => {
+        if (!isAdmin) return;
+        const currentIds = songs.map(s => s.id);
+        songs = DEFAULT_SONGS.map(s => ({ ...s, lines: [...s.lines] }));
+        saveCachedSongs();
+        renderSongList();
+        showToast('అన్ని తెలుగు భజన పాటలు పునరుద్ధరించబడ్డాయి');
+
+        if (isCloudConnected && currentUser) {
+          for (const oldId of currentIds) {
+            await removeSongFromCloud(oldId);
+          }
+          await seedDefaultSongsToCloud();
+        }
+      });
+
+      // Delegated clicks on Song List items
+      document.getElementById('songs-list-container').addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        const action = btn.getAttribute('data-action');
+        const id = btn.getAttribute('data-id');
+        if (action === 'open-song') openLyricsView(id);
+        if (action === 'edit-song') openSongEditorModal(id);
+        if (action === 'delete-song') openDeleteModal(id);
+      });
+
+      // Lyrics view navigation & toggles
+      document.getElementById('btn-back-to-list').addEventListener('click', closeLyricsView);
+      document.getElementById('btn-role-singer').addEventListener('click', () => setActiveRole('singer'));
+      document.getElementById('btn-role-cosinger').addEventListener('click', () => setActiveRole('cosinger'));
+      document.getElementById('btn-font-down').addEventListener('click', () => changeFontSize(-1));
+      document.getElementById('btn-font-up').addEventListener('click', () => changeFontSize(1));
+      document.getElementById('btn-lyrics-edit').addEventListener('click', () => {
+        if (activeSongId) openSongEditorModal(activeSongId);
+      });
+      document.getElementById('btn-lyrics-delete').addEventListener('click', () => {
+        if (activeSongId) openDeleteModal(activeSongId);
+      });
+
+      // Song Editor Modal controls
+      document.getElementById('btn-close-editor').addEventListener('click', closeSongEditorModal);
+      document.getElementById('btn-cancel-editor').addEventListener('click', closeSongEditorModal);
+      document.getElementById('btn-save-song').addEventListener('click', saveSongFromEditor);
+      document.getElementById('tab-line-editor').addEventListener('click', () => switchEditorTab('lines', true));
+      document.getElementById('tab-bulk-editor').addEventListener('click', () => switchEditorTab('bulk', true));
+
+      document.getElementById('btn-add-line-singer').addEventListener('click', () => addEditorLine('singer', ''));
+      document.getElementById('btn-add-line-cosinger').addEventListener('click', () => addEditorLine('cosinger', ''));
+      document.getElementById('btn-add-line-both').addEventListener('click', () => addEditorLine('both', ''));
+      document.getElementById('btn-add-line-gap').addEventListener('click', () => addEditorLine('gap', ''));
+
+      // Delegated events inside Line Editor rows
+      document.getElementById('editor-lines-list').addEventListener('click', (e) => {
+        const removeBtn = e.target.closest('button[data-action="remove-line"]');
+        if (removeBtn) {
+          removeBtn.closest('.editor-line-row').remove();
+        }
+      });
+
+      document.getElementById('editor-lines-list').addEventListener('change', (e) => {
+        if (!e.target.classList.contains('line-role-select')) return;
+        const row = e.target.closest('.editor-line-row');
+        const input = row.querySelector('.line-text-input');
+        if (e.target.value === 'gap') {
+          input.value = '';
+          input.disabled = true;
+          input.placeholder = 'చరణాల మధ్య ఖాళీ (Gap)';
+          input.className = 'line-text-input flex-1 min-w-0 px-2.5 py-2 rounded-lg bg-stone-100 dark:bg-stone-800/60 text-stone-400 italic text-sm focus:outline-none';
+        } else {
+          input.disabled = false;
+          input.placeholder = 'సాహిత్యం పంక్తి రాయండి...';
+          input.className = 'line-text-input flex-1 min-w-0 px-2.5 py-2 rounded-lg bg-stone-50 dark:bg-stone-900 text-stone-900 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-saffron-500';
+        }
+      });
+
+      // Delete Confirmation Modal controls
+      document.getElementById('btn-cancel-delete').addEventListener('click', closeDeleteModal);
+      document.getElementById('btn-confirm-delete').addEventListener('click', confirmDeleteSong);
+      document.getElementById('delete-confirm-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'delete-confirm-modal') closeDeleteModal();
+      });
+    }
+
+    function initApp() {
+      const savedTheme = safeGetStorage(localStorage, THEME_KEY);
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+      }
+
+      isAdmin = safeGetStorage(sessionStorage, ADMIN_SESSION_KEY) === 'true';
+      songs = loadCachedSongs();
+
+      bindEvents();
+      updateAdminUI();
+      renderSongList();
+      initCloudSync();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
+  </script>
+</body>
+</html>
